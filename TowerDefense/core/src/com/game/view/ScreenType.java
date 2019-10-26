@@ -1,5 +1,5 @@
 package com.game.view;
 
-public enum ScreenTypes {
+public enum ScreenType {
     MENU, PREFERENCES, APPLICATION, ENDGAME
 }

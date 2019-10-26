@@ -19,7 +19,7 @@ public class Main extends Game {
 		setScreen(loadingScreen);
 	}
 
-	public void changeScreen(ScreenTypes screen){
+	public void changeScreen(ScreenType screen){
 		switch(screen){
 			case MENU:
 				if(menuScreen == null) menuScreen = new MenuScreen(this);

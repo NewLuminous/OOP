@@ -14,14 +14,18 @@ public class GameStage {
         field.addActor(map);
     }
 
-    public GameField getField() {
-        return field;
-    }
-
     public void nextStage() {
-        dispose();
+        field.dispose();
         field = new GameField();
         field.addActor(map);
+    }
+
+    public void act(float delta) {
+        field.act(delta);
+    }
+
+    public void draw() {
+        field.draw();
     }
 
     public void dispose() {

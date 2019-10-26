@@ -1,6 +1,5 @@
 package com.game;
 
-import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.*;
 
 public final class BodyFactory {
@@ -66,7 +65,7 @@ public final class BodyFactory {
         //create the body to attach said definition
         Body boxBody = world.createBody(boxBodyDef);
         CircleShape circleShape = new CircleShape();
-        circleShape.setRadius(radius /2);
+        circleShape.setRadius(radius);
         boxBody.createFixture(getFixture(material,circleShape));
         circleShape.dispose();
         return boxBody;

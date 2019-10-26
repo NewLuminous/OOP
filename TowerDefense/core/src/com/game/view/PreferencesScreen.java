@@ -1,6 +1,5 @@
 package com.game.view;
 
-import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
@@ -99,7 +98,7 @@ public class PreferencesScreen implements Screen {
         backButton.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
-                parent.changeScreen(ScreenTypes.MENU);
+                parent.changeScreen(ScreenType.MENU);
             }
         });
 

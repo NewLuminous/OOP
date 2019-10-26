@@ -47,21 +47,21 @@ public class MenuScreen implements Screen {
         newGame.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
-                parent.changeScreen(ScreenTypes.APPLICATION);
+                parent.changeScreen(ScreenType.APPLICATION);
             }
         });
         TextButton _continue = new TextButton("Continue", skin);
         _continue.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
-                parent.changeScreen(ScreenTypes.ENDGAME);
+                parent.changeScreen(ScreenType.ENDGAME);
             }
         });
         TextButton settings = new TextButton("Settings", skin);
         settings.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
-                parent.changeScreen(ScreenTypes.PREFERENCES);
+                parent.changeScreen(ScreenType.PREFERENCES);
             }
         });
         TextButton exit = new TextButton("Exit", skin);
