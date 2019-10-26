@@ -8,6 +8,7 @@ public final class GameConfig {
 
     public static final int SCREEN_WIDTH = 1280;
     public static final int SCREEN_HEIGHT = 720;
+    public static final boolean IS_RESIZABLE = false;
 
     // This will be our viewport measurements while working with the debug renderer
     public static final int VIEWPORT_WIDTH = 64;
@@ -17,7 +18,7 @@ public final class GameConfig {
     public static final int BUTTON_PADDING = 50;
 
     public static final String SKIN_PATH = "skin/glassy-ui.json";
-    public static final String BACKGROUND_PATH = "background.png";
+    public static final String BACKGROUND_PATH = "background.jpg";
 
     private static final String PREF_MUSIC_VOLUME = "volume";
     private static final String PREF_MUSIC_ENABLED = "music.enabled";

@@ -1,0 +1,335 @@
+
+pack.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+towerDefensetile015
+  rotate: false
+  xy: 2, 398
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: -1
+towerDefensetile016
+  rotate: false
+  xy: 2, 332
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: -1
+towerDefensetile017
+  rotate: false
+  xy: 68, 398
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: -1
+towerDefensetile018
+  rotate: false
+  xy: 2, 266
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: -1
+towerDefensetile019
+  rotate: false
+  xy: 68, 332
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: -1
+towerDefensetile020
+  rotate: false
+  xy: 134, 398
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: -1
+towerDefensetile021
+  rotate: false
+  xy: 2, 200
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: -1
+towerDefensetile022
+  rotate: false
+  xy: 68, 266
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: -1
+towerDefensetile130
+  rotate: false
+  xy: 134, 332
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: -1
+towerDefensetile131
+  rotate: false
+  xy: 200, 398
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: -1
+towerDefensetile132
+  rotate: false
+  xy: 2, 134
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: -1
+towerDefensetile133
+  rotate: false
+  xy: 68, 200
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: -1
+towerDefensetile134
+  rotate: false
+  xy: 134, 266
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: -1
+towerDefensetile135
+  rotate: false
+  xy: 200, 332
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: -1
+towerDefensetile136
+  rotate: false
+  xy: 266, 398
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: -1
+towerDefensetile137
+  rotate: false
+  xy: 2, 68
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: -1
+towerDefensetile138
+  rotate: false
+  xy: 68, 134
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: -1
+towerDefensetile139
+  rotate: false
+  xy: 134, 200
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: -1
+towerDefensetile140
+  rotate: false
+  xy: 200, 266
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: -1
+towerDefensetile141
+  rotate: false
+  xy: 266, 332
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: -1
+towerDefensetile142
+  rotate: false
+  xy: 332, 398
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: -1
+towerDefensetile161
+  rotate: false
+  xy: 2, 2
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: -1
+towerDefensetile162
+  rotate: false
+  xy: 68, 68
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: -1
+towerDefensetile163
+  rotate: false
+  xy: 134, 134
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: -1
+towerDefensetile164
+  rotate: false
+  xy: 200, 200
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: -1
+towerDefensetile165
+  rotate: false
+  xy: 266, 266
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: -1
+towerDefensetile180
+  rotate: false
+  xy: 332, 332
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: -1
+towerDefensetile181
+  rotate: false
+  xy: 398, 398
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: -1
+towerDefensetile182
+  rotate: false
+  xy: 68, 2
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: -1
+towerDefensetile184
+  rotate: false
+  xy: 134, 68
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: -1
+towerDefensetile185
+  rotate: false
+  xy: 200, 134
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: -1
+towerDefensetile186
+  rotate: false
+  xy: 266, 200
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: -1
+towerDefensetile187
+  rotate: false
+  xy: 332, 266
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: -1
+towerDefensetile188
+  rotate: false
+  xy: 398, 332
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: -1
+towerDefensetile203
+  rotate: false
+  xy: 134, 2
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: -1
+towerDefensetile206
+  rotate: false
+  xy: 200, 68
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: -1
+towerDefensetile245
+  rotate: false
+  xy: 266, 134
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: -1
+towerDefensetile246
+  rotate: false
+  xy: 332, 200
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: -1
+towerDefensetile247
+  rotate: false
+  xy: 398, 266
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: -1
+towerDefensetile248
+  rotate: false
+  xy: 200, 2
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: -1
+towerDefensetile249
+  rotate: false
+  xy: 266, 68
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: -1
+towerDefensetile268
+  rotate: false
+  xy: 332, 134
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: -1
+towerDefensetile269
+  rotate: false
+  xy: 398, 200
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: -1
+towerDefensetile270
+  rotate: false
+  xy: 266, 2
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: -1
+towerDefensetile271
+  rotate: false
+  xy: 332, 68
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: -1
+towerDefensetile291
+  rotate: false
+  xy: 398, 134
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: -1
+towerDefensetile292
+  rotate: false
+  xy: 332, 2
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: -1

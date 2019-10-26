@@ -8,6 +8,8 @@ import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
 import com.game.GameConfig;
 import com.game.GameStage;
 import com.game.Main;
+import com.game.controller.GameController;
+import com.game.controller.KeyboardController;
 
 public class MainScreen implements Screen {
 
@@ -17,12 +19,15 @@ public class MainScreen implements Screen {
     private Box2DDebugRenderer renderer;
 
     private GameStage stage;
+    private GameController keyboard;
 
     public MainScreen(Main Main) {
         parent = Main;
-        stage = new GameStage();
         renderer = new Box2DDebugRenderer(true,true,true,true,true,true);
         setupCamera();
+
+        stage = new GameStage();
+        keyboard = new KeyboardController();
     }
 
     private void setupCamera() {
@@ -33,7 +38,7 @@ public class MainScreen implements Screen {
 
     @Override
     public void show() {
-        Gdx.input.setInputProcessor(stage);
+        Gdx.input.setInputProcessor(stage.getField());
     }
 
     @Override
@@ -42,8 +47,9 @@ public class MainScreen implements Screen {
         Gdx.gl.glClearColor(0f, 0f, 0f, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
-        stage.act(delta);
-        renderer.render(stage.getWorld(), camera.combined);
+        stage.getField().act(delta);
+        stage.getField().draw();
+        renderer.render(stage.getField().getWorld(), camera.combined);
     }
 
     @Override
