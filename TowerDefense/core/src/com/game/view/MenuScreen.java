@@ -14,6 +14,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.game.GameConfig;
 import com.game.Main;
+import com.game.loader.GameLoader;
 
 public class MenuScreen implements Screen {
     private Main parent;
@@ -30,7 +31,7 @@ public class MenuScreen implements Screen {
     public void show() {
         Gdx.input.setInputProcessor(stage);
 
-        Image background = new Image(new Texture(Gdx.files.internal(GameConfig.BACKGROUND_PATH)));
+        Image background = new Image((Texture) GameLoader.manager.get(GameLoader.BACKGROUND));
         stage.addActor(background);
 
         // Create a table that fills the screen. Everything else will go inside this table.

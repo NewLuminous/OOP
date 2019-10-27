@@ -2,6 +2,7 @@ package com.game.view;
 
 import com.badlogic.gdx.Screen;
 import com.game.Main;
+import com.game.loader.GameLoader;
 
 public class LoadingScreen implements Screen {
     private Main parent;
@@ -12,7 +13,10 @@ public class LoadingScreen implements Screen {
 
     @Override
     public void show() {
-        // TODO Auto-generated method stub
+        // tells our asset manger that we want to load the images set in loadImages method
+        GameLoader.queueAllImages();
+        // tells the asset manager to load the images and wait until finsihed loading.
+        GameLoader.manager.finishLoading();
     }
 
     @Override

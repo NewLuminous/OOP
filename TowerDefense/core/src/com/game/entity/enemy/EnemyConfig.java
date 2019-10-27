@@ -1,10 +1,11 @@
 package com.game.entity.enemy;
 
-class EnemyConfig {
-    static int NORMAL_ENEMY_HP = 1;
+final class EnemyConfig {
+    static float NORMAL_ENEMY_RADIUS = 0.4f;
+    static int NORMAL_ENEMY_HP = 7;
     static int NORMAL_ENEMY_ARMOR;
     static int NORMAL_ENEMY_BOUNTY;
-    static double NORMAL_ENEMY_SPEED;
+    static float NORMAL_ENEMY_SPEED = 7;
 
     private EnemyConfig() {}
 }

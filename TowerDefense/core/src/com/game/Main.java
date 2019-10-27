@@ -1,6 +1,14 @@
+/**
+ * @brief	This is where the game starts
+ * @author	Nguyen Minh Tan
+ * @author	Vu Minh Ngoc
+ * @version	0.0.1
+ * @date	10/26/2019
+ */
 package com.game;
 
 import com.badlogic.gdx.Game;
+import com.game.loader.GameLoader;
 import com.game.view.*;
 
 public class Main extends Game {
@@ -12,8 +20,13 @@ public class Main extends Game {
 	private MainScreen mainScreen;
 	private EndScreen endScreen;
 
+	/**
+	 * @brief	Gets called when <code>Main</code> object being constructed.
+	 * @details	Game starts with the loading screen. The main menu shows up later when the game gets ready.
+	 */
 	@Override
 	public void create() {
+		GameLoader.startManager();
 		gameConfig = new GameConfig();
 		loadingScreen = new LoadingScreen(this);
 		setScreen(loadingScreen);
@@ -42,5 +55,9 @@ public class Main extends Game {
 
 	public GameConfig getPreferences() {
 		return gameConfig;
+	}
+
+	public void throwException(String exception) throws RuntimeException {
+		throw new RuntimeException(exception);
 	}
 }

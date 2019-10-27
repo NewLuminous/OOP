@@ -1,7 +1,12 @@
-package com.game;
+package com.game.entity;
 
 import com.badlogic.gdx.physics.box2d.*;
 
+/**
+ * @class   BodyFactory
+ * @brief   A factory which creates <code>Body</code>
+ * @note    A Singleton class.
+ */
 public final class BodyFactory {
     private static BodyFactory instance;
 
@@ -17,6 +22,12 @@ public final class BodyFactory {
         this.world = world;
     }
 
+    /**
+     * @brief   Gets the <code>BodyFactory</code> instance. Creates one if none exist.
+     * @note    At most one <code>BodyFactory</code> will be created.
+     * @param   world Where all entities of the game act in.
+     * @return  The sole <code>BodyFactory</code> object.
+     */
     public static BodyFactory getInstance(World world) {
         if (instance == null) instance = new BodyFactory(world);
         return instance;
@@ -54,62 +65,80 @@ public final class BodyFactory {
         return fixtureDef;
     }
 
-    public Body getCircleBody(float posx, float posy, float radius, Materials material, BodyDef.BodyType bodyType, boolean fixedRotation){
-        // create a definition
-        BodyDef boxBodyDef = new BodyDef();
-        boxBodyDef.type = bodyType;
-        boxBodyDef.position.x = posx;
-        boxBodyDef.position.y = posy;
-        boxBodyDef.fixedRotation = fixedRotation;
+    public Body getCircleBody(float posx, float posy, float radius, boolean isSensor, Materials material, BodyDef.BodyType bodyType, boolean fixedRotation){
+        /**
+         * Creates a definition of the body.
+         */
+        BodyDef circleBodyDef = new BodyDef();
+        circleBodyDef.type = bodyType;
+        circleBodyDef.position.x = posx;
+        circleBodyDef.position.y = posy;
+        circleBodyDef.fixedRotation = fixedRotation;
 
-        //create the body to attach said definition
-        Body boxBody = world.createBody(boxBodyDef);
+        /**
+         * Creates the body to attach said definition
+         */
+        Body circleBody = world.createBody(circleBodyDef);
         CircleShape circleShape = new CircleShape();
         circleShape.setRadius(radius);
-        boxBody.createFixture(getFixture(material,circleShape));
+        circleBody.createFixture(getFixture(material,circleShape));
+        circleBody.getFixtureList().first().setSensor(isSensor);
         circleShape.dispose();
-        return boxBody;
+        return circleBody;
     }
 
-    public Body getCircleBody(float posx, float posy, float radius, Materials material, BodyDef.BodyType bodyType){
-        return getCircleBody(posx, posy, radius, material, bodyType, false);
+    public Body getCircleBody(float posx, float posy, float radius, boolean isSensor, Materials material, BodyDef.BodyType bodyType){
+        return getCircleBody(posx, posy, radius, isSensor, material, bodyType, false);
     }
 
-    public Body getCircleBody(float posx, float posy, float radius, BodyDef.BodyType bodyType){
-        return getCircleBody(posx, posy, radius, Materials.STEEL, bodyType, false);
+    public Body getCircleBody(float posx, float posy, float radius, boolean isSensor, BodyDef.BodyType bodyType){
+        return getCircleBody(posx, posy, radius, isSensor, Materials.STEEL, bodyType, false);
+    }
+
+    public Body getCircleBody(float posx, float posy, float radius, boolean isSensor){
+        return getCircleBody(posx, posy, radius, isSensor, Materials.STEEL, BodyDef.BodyType.KinematicBody, false);
     }
 
     public Body getCircleBody(float posx, float posy, float radius){
-        return getCircleBody(posx, posy, radius, Materials.STEEL, BodyDef.BodyType.KinematicBody, false);
+        return getCircleBody(posx, posy, radius, false, Materials.STEEL, BodyDef.BodyType.KinematicBody, false);
     }
 
-    public Body getBoxBody(float posx, float posy, float width, float height, Materials material, BodyDef.BodyType bodyType, boolean fixedRotation){
-        // create a definition
+    public Body getBoxBody(float posx, float posy, float width, float height, boolean isSensor, Materials material, BodyDef.BodyType bodyType, boolean fixedRotation){
+        /**
+         * Creates a definition of the body.
+         */
         BodyDef boxBodyDef = new BodyDef();
         boxBodyDef.type = bodyType;
         boxBodyDef.position.x = posx;
         boxBodyDef.position.y = posy;
         boxBodyDef.fixedRotation = fixedRotation;
 
-        //create the body to attach said definition
+        /**
+         * Creates the body to attach said definition
+         */
         Body boxBody = world.createBody(boxBodyDef);
         PolygonShape poly = new PolygonShape();
         poly.setAsBox(width/2, height/2);
         boxBody.createFixture(getFixture(material,poly));
+        boxBody.getFixtureList().first().setSensor(isSensor);
         poly.dispose();
 
         return boxBody;
     }
 
-    public Body getBoxBody(float posx, float posy, float width, float height, Materials material, BodyDef.BodyType bodyType){
-        return getBoxBody(posx, posy, width, height, material, bodyType, false);
+    public Body getBoxBody(float posx, float posy, float width, float height, boolean isSensor, Materials material, BodyDef.BodyType bodyType){
+        return getBoxBody(posx, posy, width, height, isSensor, material, bodyType, false);
     }
 
-    public Body getBoxBody(float posx, float posy, float width, float height, BodyDef.BodyType bodyType){
-        return getBoxBody(posx, posy, width, height, Materials.STEEL, bodyType, false);
+    public Body getBoxBody(float posx, float posy, float width, float height, boolean isSensor, BodyDef.BodyType bodyType){
+        return getBoxBody(posx, posy, width, height, isSensor, Materials.STEEL, bodyType, false);
+    }
+
+    public Body getBoxBody(float posx, float posy, float width, float height, boolean isSensor){
+        return getBoxBody(posx, posy, width, height, isSensor, Materials.STEEL, BodyDef.BodyType.KinematicBody, false);
     }
 
     public Body getBoxBody(float posx, float posy, float width, float height){
-        return getBoxBody(posx, posy, width, height, Materials.STEEL, BodyDef.BodyType.KinematicBody, false);
+        return getBoxBody(posx, posy, width, height, false, Materials.STEEL, BodyDef.BodyType.KinematicBody, false);
     }
 }

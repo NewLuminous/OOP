@@ -1,10 +1,14 @@
 package com.game.entity.bullet;
 
 import com.badlogic.gdx.physics.box2d.Body;
-import com.game.BodyFactory;
+import com.game.entity.BodyFactory;
 import com.game.entity.tile.tower.Tower;
 
-class BulletFactory {
+/**
+ * @class   BulletFactory
+ * @brief   A factory which creates <code>Bullet</code>
+ */
+final class BulletFactory {
     private BulletFactory() {}
 
     static Body getBody(Tower tower, int posx, int posy) {
