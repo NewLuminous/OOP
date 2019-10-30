@@ -1,5 +1,6 @@
 package com.game.entity.tile.tower;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.physics.box2d.World;
 import com.game.GameConfig;
@@ -7,24 +8,28 @@ import com.game.entity.IActiveEntity;
 import com.game.entity.tile.GameTile;
 
 public abstract class Tower extends GameTile implements IActiveEntity {
+    public enum TowerType {
+        NORMAL, SNIPER, MACHINE_GUN
+    }
+
     private TowerType type;
 
     private double rateOfFire;
     private double range;
     private double damage;
 
-    protected static Texture[] textures;
+    protected Texture[] textures;
 
     public Tower(World world, int posx, int posy, TowerType type) {
         super(world, posx, posy);
         this.type = type;
     }
 
-    public TowerType getType() {
+    public final TowerType getType() {
         return type;
     }
 
-    public double getRateOfFire() {
+    public final double getRateOfFire() {
         return rateOfFire;
     }
 
@@ -33,7 +38,7 @@ public abstract class Tower extends GameTile implements IActiveEntity {
         this.rateOfFire = rate;
     }
 
-    public double getRange() {
+    public final double getRange() {
         return range;
     }
 
@@ -42,7 +47,7 @@ public abstract class Tower extends GameTile implements IActiveEntity {
         this.range = range;
     }
 
-    public double getDamage() {
+    public final double getDamage() {
         return damage;
     }
 
@@ -52,17 +57,17 @@ public abstract class Tower extends GameTile implements IActiveEntity {
     }
 
     @Override
-    public float getDirection() {
+    public final float getDirection() {
         return 0;
     }
 
     @Override
     public float getTextureHeight() {
-        return getTextures()[0].getHeight() * GameConfig.VIEWPORT_HEIGHT / GameConfig.SCREEN_HEIGHT;
+        return getTextures()[0].getHeight() * GameConfig.VIEWPORT_HEIGHT / Gdx.graphics.getHeight();
     }
 
     @Override
     public float getTextureWidth() {
-        return getTextures()[0].getWidth() * GameConfig.VIEWPORT_WIDTH / GameConfig.SCREEN_WIDTH;
+        return getTextures()[0].getWidth() * GameConfig.VIEWPORT_WIDTH / Gdx.graphics.getWidth();
     }
 }

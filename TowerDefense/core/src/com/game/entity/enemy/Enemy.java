@@ -1,26 +1,31 @@
 package com.game.entity.enemy;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
+import com.game.GameConfig;
 import com.game.entity.GameEntity;
-import com.game.entity.IActiveEntity;
 import com.game.entity.IMovingEntity;
 
-public abstract class Enemy extends GameEntity implements IMovingEntity, IActiveEntity {
+public abstract class Enemy extends GameEntity implements IMovingEntity {
+    public enum EnemyType {
+        NORMAL, TANKER, SMALLER, BOSS, RANDOM
+    }
+
     private int hp;
     private int armor;
     private int bounty;
 
     protected double speed;
-    protected static Texture[] textures;
+    protected Texture[] textures;
 
     public Enemy(Body body, int hp) {
         super(body);
         setHp(hp);
     }
 
-    public int getHp() {
+    public final int getHp() {
         return hp;
     }
 
@@ -29,7 +34,7 @@ public abstract class Enemy extends GameEntity implements IMovingEntity, IActive
         this.hp = hp;
     }
 
-    public int getArmor() {
+    public final int getArmor() {
         return armor;
     }
 
@@ -38,7 +43,7 @@ public abstract class Enemy extends GameEntity implements IMovingEntity, IActive
         this.armor = armor;
     }
 
-    public int getBounty() {
+    public final int getBounty() {
         return bounty;
     }
 
@@ -47,7 +52,7 @@ public abstract class Enemy extends GameEntity implements IMovingEntity, IActive
         this.bounty = bounty;
     }
 
-    protected void targetAt(Vector2 pos, float factor) {
+    protected final void targetAt(Vector2 pos, float factor) {
         Vector2 velocity = body.getLinearVelocity();
         float deltaX = pos.x - getPosition().x;
         float deltaY = pos.y - getPosition().y;
@@ -55,11 +60,22 @@ public abstract class Enemy extends GameEntity implements IMovingEntity, IActive
     }
 
     @Override
-    public float getDirection() {
+    public final float getDirection() {
         return body.getLinearVelocity().angle();
     }
 
-    public void die() {
-        getWorld().destroyBody(body);
+    @Override
+    public float getTextureHeight() {
+        return (float)getTextures()[0].getHeight() * GameConfig.VIEWPORT_HEIGHT / Gdx.graphics.getHeight();
+    }
+
+    @Override
+    public float getTextureWidth() {
+        return (float)getTextures()[0].getWidth() * GameConfig.VIEWPORT_WIDTH / Gdx.graphics.getWidth();
+    }
+
+    public Body die() {
+        textures = new Texture[0];
+        return body;
     }
 }

@@ -2,7 +2,7 @@ package com.game.entity.tile.tower;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.physics.box2d.World;
-import com.game.loader.GameLoader;
+import com.game.util.loader.GameLoader;
 
 public class NormalTower extends Tower {
     public NormalTower(World world, int posx, int posy) {

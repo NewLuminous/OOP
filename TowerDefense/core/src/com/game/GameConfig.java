@@ -15,7 +15,7 @@ public final class GameConfig {
     /**
      * Resizable flag. Set <code>false</code> to simplify the code.
      */
-    public static final boolean IS_RESIZABLE = false;
+    public static final boolean IS_RESIZABLE = true;
 
     /**
      * Viewport measurements.
@@ -35,11 +35,6 @@ public final class GameConfig {
      * @see     com.game.view.MenuScreen#show()
      */
     public static final int BUTTON_PADDING = 50;
-
-    /**
-     * The path to the skin. Used for buttons.
-     */
-    public static final String SKIN_PATH = "skin/glassy-ui.json";
 
     public static final String MAP1 = "maps/map1.dat";
 

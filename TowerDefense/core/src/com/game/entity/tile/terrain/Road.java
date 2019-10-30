@@ -15,7 +15,7 @@ public class Road extends GameTile {
         adjacents = new ArrayList<Road>();
     }
 
-    public void addAdjacent(Road adj) {
+    public final void addAdjacent(Road adj) {
         adjacents.add(adj);
     }
 

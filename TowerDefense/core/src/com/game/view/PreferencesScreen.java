@@ -10,15 +10,17 @@ import com.badlogic.gdx.scenes.scene2d.EventListener;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.*;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
+import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
-import com.game.GameConfig;
 import com.game.Main;
-import com.game.loader.GameLoader;
+import com.game.util.loader.GameLoader;
 
 public class PreferencesScreen implements Screen {
 
     private Main parent;
     private Stage stage;
+
+    private Image background;
 
     private Label titleLabel;
     private Label volumeMusicLabel;
@@ -31,14 +33,13 @@ public class PreferencesScreen implements Screen {
 
         // create stage and set it as input processor
         stage = new Stage(new ScreenViewport());    //produce errors
+        background = new Image((Texture) GameLoader.manager.get(GameLoader.BACKGROUND));
     }
 
     @Override
     public void show() {
         Gdx.input.setInputProcessor(stage);
         stage.clear();
-
-        Image background = new Image((Texture) GameLoader.manager.get(GameLoader.BACKGROUND));
         stage.addActor(background);
 
         // Create a table that fills the screen. Everything else will go inside this table.
@@ -48,7 +49,7 @@ public class PreferencesScreen implements Screen {
         stage.addActor(table);
 
         // temporary until we have asset manager in
-        Skin skin = new Skin(Gdx.files.internal(GameConfig.SKIN_PATH));
+        Skin skin = GameLoader.getManager().get(GameLoader.GLASSY_SKIN);
 
         //music
         final Slider volumeMusicSlider = new Slider( 0f, 1f, 0.1f,false, skin );
@@ -104,26 +105,27 @@ public class PreferencesScreen implements Screen {
         });
 
         titleLabel = new Label( "Preferences", skin );
+        titleLabel.setAlignment(Align.center);
         volumeMusicLabel = new Label( "Music Volume", skin );
         volumeSoundLabel = new Label( "Sound Volume", skin );
         musicOnOffLabel = new Label( "Music", skin );
         soundOnOffLabel = new Label( "Sound Effect", skin );
 
-        table.add(titleLabel).colspan(2);
+        table.add(titleLabel).colspan(2).width(Gdx.graphics.getWidth() / 2).height(Gdx.graphics.getHeight() / 10);
         table.row().pad(10, 0, 0, 10);
-        table.add(volumeMusicLabel).left();
-        table.add(volumeMusicSlider);
+        table.add(volumeMusicLabel).height(Gdx.graphics.getHeight() / 10).left();
+        table.add(volumeMusicSlider).fill();
         table.row().pad(10, 0, 0, 10);
-        table.add(musicOnOffLabel).left();
-        table.add(musicCheckbox);
+        table.add(musicOnOffLabel).height(Gdx.graphics.getHeight() / 10).left();
+        table.add(musicCheckbox).fill();
         table.row().pad(10, 0, 0, 10);
-        table.add(volumeSoundLabel).left();
-        table.add(soundMusicSlider);
+        table.add(volumeSoundLabel).height(Gdx.graphics.getHeight() / 10).left();
+        table.add(soundMusicSlider).fill();
         table.row().pad(10, 0, 0, 10);
-        table.add(soundOnOffLabel).left();
-        table.add(soundEffectsCheckbox);
+        table.add(soundOnOffLabel).height(Gdx.graphics.getHeight() / 10).left();
+        table.add(soundEffectsCheckbox).fill();
         table.row().pad(10, 0, 0, 10);
-        table.add(backButton).colspan(2);
+        table.add(backButton).height(Gdx.graphics.getHeight() / 10).colspan(2);
         table.setDebug(false);
     }
 
@@ -142,6 +144,8 @@ public class PreferencesScreen implements Screen {
     public void resize(int width, int height) {
         // change the stage's viewport when the screen size is changed
         stage.getViewport().update(width, height, true);
+        background.setHeight(Gdx.graphics.getHeight());
+        background.setWidth(Gdx.graphics.getWidth());
     }
 
     @Override

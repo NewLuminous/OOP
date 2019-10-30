@@ -14,24 +14,20 @@ import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.game.GameConfig;
 import com.game.Main;
-import com.game.loader.GameLoader;
+import com.game.util.loader.GameLoader;
+import com.game.util.player.MusicPlayer;
 
 public class MenuScreen implements Screen {
     private Main parent;
     private Stage stage;
+    private Image background;
 
     public MenuScreen(Main Main) {
         parent = Main;
 
         // create stage and set it as input processor
         stage = new Stage(new ScreenViewport());    //produce errors
-    }
-
-    @Override
-    public void show() {
-        Gdx.input.setInputProcessor(stage);
-
-        Image background = new Image((Texture) GameLoader.manager.get(GameLoader.BACKGROUND));
+        background = new Image((Texture) GameLoader.manager.get(GameLoader.BACKGROUND));
         stage.addActor(background);
 
         // Create a table that fills the screen. Everything else will go inside this table.
@@ -41,7 +37,7 @@ public class MenuScreen implements Screen {
         stage.addActor(table);
 
         // temporary until we have asset manager in
-        Skin skin = new Skin(Gdx.files.internal(GameConfig.SKIN_PATH));
+        Skin skin = GameLoader.getManager().get(GameLoader.GLASSY_SKIN);
 
         //create buttons
         TextButton newGame = new TextButton("New Game", skin);
@@ -85,6 +81,12 @@ public class MenuScreen implements Screen {
     }
 
     @Override
+    public void show() {
+        MusicPlayer.play(MusicPlayer.ALGORITHMS);
+        Gdx.input.setInputProcessor(stage);
+    }
+
+    @Override
     public void render(float delta) {
         //Clear the screen before drawing the next screen to avoid flickering
         Gdx.gl.glClearColor(0f, 0f, 0f, 1);
@@ -97,8 +99,10 @@ public class MenuScreen implements Screen {
 
     @Override
     public void resize(int width, int height) {
-        // change the stage's viewport when teh screen size is changed
+        // change the stage's viewport when the screen size is changed
         stage.getViewport().update(width, height, true);
+        background.setHeight(Gdx.graphics.getHeight());
+        background.setWidth(Gdx.graphics.getWidth());
     }
 
     @Override

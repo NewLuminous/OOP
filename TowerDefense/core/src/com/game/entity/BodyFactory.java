@@ -16,7 +16,7 @@ public final class BodyFactory {
 
     private final float DEGTORAD = 0.0174533f;
 
-    private World world;
+    private static World world;
 
     private BodyFactory(World world) {
         this.world = world;
@@ -30,6 +30,7 @@ public final class BodyFactory {
      */
     public static BodyFactory getInstance(World world) {
         if (instance == null) instance = new BodyFactory(world);
+        BodyFactory.world = world;
         return instance;
     }
 

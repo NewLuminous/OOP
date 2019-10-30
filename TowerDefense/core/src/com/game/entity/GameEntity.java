@@ -13,11 +13,11 @@ public abstract class GameEntity extends Actor {
         body.setUserData(this);
     }
 
-    public World getWorld() {
+    public final World getWorld() {
         return body.getWorld();
     }
 
-    public Vector2 getPosition() {
+    public final Vector2 getPosition() {
         return body.getPosition();
     }
 }

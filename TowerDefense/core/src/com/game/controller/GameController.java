@@ -8,6 +8,7 @@ public class GameController implements InputProcessor {
     public boolean left, right, up, down;
 
     public boolean isMouse1Down, isMouse2Down, isMouse3Down;
+    private boolean isMouse1Up, isMouse2Up, isMouse3Up;
     public boolean isDragged;
     public Vector2 mouseLocation = new Vector2();
 
@@ -68,10 +69,13 @@ public class GameController implements InputProcessor {
     public boolean touchDown(int screenX, int screenY, int pointer, int button) {
         if (button == 0) {
             isMouse1Down = true;
+            isMouse1Up = false;
         } else if (button == 1) {
             isMouse2Down = true;
+            isMouse2Up = false;
         } else if (button == 2) {
             isMouse3Down = true;
+            isMouse3Up = false;
         }
         mouseLocation.x = screenX;
         mouseLocation.y = screenY;
@@ -83,10 +87,13 @@ public class GameController implements InputProcessor {
         isDragged = false;
         if (button == 0) {
             isMouse1Down = false;
+            isMouse1Up = true;
         } else if (button == 1) {
             isMouse2Down = false;
+            isMouse2Up = true;
         } else if (button == 2) {
             isMouse3Down = false;
+            isMouse3Up = true;
         }
         mouseLocation.x = screenX;
         mouseLocation.y = screenY;
@@ -110,6 +117,14 @@ public class GameController implements InputProcessor {
 
     @Override
     public boolean scrolled(int amount) {
+        return false;
+    }
+
+    public boolean isMouse1Click() {
+        if (isMouse1Up) {
+            isMouse1Up = false;
+            return true;
+        }
         return false;
     }
 }

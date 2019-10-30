@@ -5,8 +5,7 @@ import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.game.GameStage;
 import com.game.Main;
-
-import java.io.FileNotFoundException;
+import com.game.util.player.MusicPlayer;
 
 public class MainScreen implements Screen {
     private Main parent;
@@ -18,11 +17,8 @@ public class MainScreen implements Screen {
 
     @Override
     public void show() {
-        try {
-            stage = new GameStage();
-        } catch (FileNotFoundException e) {
-            parent.throwException("File not found");
-        }
+        MusicPlayer.play(MusicPlayer.BATTLE);
+        stage = new GameStage();
     }
 
     @Override
