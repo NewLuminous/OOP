@@ -20,6 +20,8 @@ public abstract class Enemy extends GameEntity implements IMovingEntity {
     protected double speed;
     protected Texture[] textures;
 
+    boolean destroyed = false;
+
     public Enemy(Body body, int hp) {
         super(body);
         setHp(hp);
@@ -74,8 +76,14 @@ public abstract class Enemy extends GameEntity implements IMovingEntity {
         return (float)getTextures()[0].getWidth() * GameConfig.VIEWPORT_WIDTH / Gdx.graphics.getWidth();
     }
 
-    public Body die() {
-        textures = new Texture[0];
+    @Override
+    public Body destroy() {
+        destroyed = true;
         return body;
+    }
+
+    @Override
+    public boolean isDestroyed() {
+        return destroyed;
     }
 }

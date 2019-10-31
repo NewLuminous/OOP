@@ -16,7 +16,7 @@ public class LoadingScreen implements Screen {
     private SpriteBatch sb;
     private TextureAtlas.AtlasRegion title;
     private TextureAtlas.AtlasRegion dash;
-    private Animation flameAnimation;
+    private Animation<TextureAtlas.AtlasRegion> flameAnimation;
 
     private int currentLoadingStage;
     private float stateTime;
@@ -45,7 +45,7 @@ public class LoadingScreen implements Screen {
         TextureAtlas atlas = GameLoader.manager.get(GameLoader.LOADING_IMAGES);
         title = atlas.findRegion("staying-alight-logo");
         dash = atlas.findRegion("loading-dash");
-        flameAnimation = new Animation(0.07f, atlas.findRegions("flames/flames"), Animation.PlayMode.LOOP);
+        flameAnimation = new Animation<>(0.07f, atlas.findRegions("flames/flames"), Animation.PlayMode.LOOP);
 
         System.out.println("Loading images...");
         GameLoader.queueAddImages();
@@ -64,7 +64,7 @@ public class LoadingScreen implements Screen {
         /**
          * Get current frame of animation for the current stateTime
          */
-        TextureRegion currentFrame = (TextureRegion) flameAnimation.getKeyFrame(stateTime, true);
+        TextureRegion currentFrame = flameAnimation.getKeyFrame(stateTime, true);
 
         sb.begin();
         drawLoadingBar(currentLoadingStage * 2, currentFrame);

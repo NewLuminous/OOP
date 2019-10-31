@@ -7,23 +7,23 @@ import com.badlogic.gdx.physics.box2d.*;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.game.controller.GameController;
+import com.game.entity.bullet.Bullet;
 import com.game.entity.enemy.EnemyFactory;
+import com.game.entity.tile.TileFactory;
+import com.game.entity.tile.tower.Tower;
 import com.game.util.drawer.GameDrawer;
 import com.game.entity.IActiveEntity;
 import com.game.entity.enemy.Enemy;
 import com.game.entity.tile.GameTile;
-import com.game.entity.tile.terrain.Mountain;
 import com.game.entity.tile.terrain.Road;
 import com.game.entity.tile.terrain.Spawner;
 import com.game.entity.tile.terrain.Target;
 import com.game.util.player.SoundPlayer;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
 public class GameField extends Stage implements ContactListener {
-    private final float TIME_STEP = 1 / 300f;
-    private float accumulator = 0f;
-
     private GameStage stage;
     private World world;
     private OrthographicCamera camera;
@@ -35,6 +35,8 @@ public class GameField extends Stage implements ContactListener {
     private GameTile[][] map;
     private ArrayList<Spawner> spawners;
     private ArrayList<IActiveEntity> activeEntities;
+    private ArrayList<Tower> towers;
+    private ArrayList<Bullet> bullets;
     private ArrayList<Body> deadBodies;
 
     public GameField(GameStage stage) {
@@ -43,7 +45,7 @@ public class GameField extends Stage implements ContactListener {
         world = new World(new Vector2(0, 0), true);
         world.setContactListener(this);
 
-        renderer = new Box2DDebugRenderer(false,true,false,true,true,true);
+        renderer = new Box2DDebugRenderer(true,true,true,true,true,true);
         setupCamera();
 
         controller = new GameController();
@@ -53,24 +55,17 @@ public class GameField extends Stage implements ContactListener {
         map = new GameTile[GameConfig.VIEWPORT_WIDTH + 1][GameConfig.VIEWPORT_HEIGHT + 1];
         spawners = new ArrayList<Spawner>();
         activeEntities = new ArrayList<IActiveEntity>();
+        towers = new ArrayList<Tower>();
+        bullets = new ArrayList<Bullet>();
         deadBodies = new ArrayList<Body>();
     }
 
     public void setMap(int posx, int posy, GameTile.TileType tile) {
-        switch (tile) {
-            case MOUNTAIN:
-                map[posx][posy] = new Mountain(world, posx, posy);
-                break;
-            case ROAD:
-                map[posx][posy] = new Road(world, posx, posy);
-                break;
-            case SPAWNER:
-                map[posx][posy] = new Spawner(world, posx, posy);
-                spawners.add((Spawner) map[posx][posy]);
-                break;
-            case TARGET:
-                map[posx][posy] = new Target(world, posx, posy);
-                break;
+        map[posx][posy] = TileFactory.getTile(world, posx, posy, tile);
+        if (map[posx][posy] instanceof Spawner) spawners.add((Spawner) map[posx][posy]);
+        if (map[posx][posy] instanceof Tower) {
+            activeEntities.add((Tower) map[posx][posy]);
+            towers.add((Tower) map[posx][posy]);
         }
         if (map[posx][posy] instanceof Road) {
             Road current = (Road)map[posx][posy];
@@ -93,7 +88,7 @@ public class GameField extends Stage implements ContactListener {
         if (startPos.x == GameConfig.VIEWPORT_WIDTH) ++startPos.x;
         if (startPos.y == 0) --startPos.y;
         if (startPos.y == GameConfig.VIEWPORT_HEIGHT) ++startPos.y;
-        Enemy enemy = EnemyFactory.getEnemy(world, startPos.x, startPos.y, Enemy.EnemyType.NORMAL);
+        Enemy enemy = EnemyFactory.getEnemy(world, startPos.x, startPos.y, enemyType);
         enemy.targetAt(spawners.get(0).getPosition());
         activeEntities.add(enemy);
     }
@@ -101,15 +96,28 @@ public class GameField extends Stage implements ContactListener {
     @Override
     public void act(float delta) {
         super.act(delta);
-
         if (controller.isMouse1Click()) spawnEnemy(Enemy.EnemyType.NORMAL);
-
-        // Fixed timestep
-        accumulator += delta;
-        while (accumulator >= delta) {
-            world.step(TIME_STEP, 6, 2);
-            accumulator -= TIME_STEP;
+        for (Tower tower: towers) {
+            Bullet bullet = tower.fire(delta);
+            if (bullet != null) {
+                bullets.add(bullet);
+                activeEntities.add(bullet);
+            }
         }
+
+        for (Iterator<Bullet> it = bullets.iterator(); it.hasNext();) {
+            Bullet bullet = it.next();
+            if (bullet.target.isDestroyed()) {
+                it.remove();
+                activeEntities.remove(bullet);
+                deadBodies.add(bullet.destroy());
+            }
+            else bullet.targetAt(bullet.target.getPosition());
+        }
+
+        for (Body body: deadBodies) world.destroyBody(body);
+        deadBodies.clear();
+        world.step(delta, 3, 3);
     }
 
     @Override
@@ -117,10 +125,27 @@ public class GameField extends Stage implements ContactListener {
         Body a = contact.getFixtureA().getBody();
         Body b = contact.getFixtureB().getBody();
         if (b.getUserData() instanceof Enemy) {
-            Enemy enemy = (Enemy) b.getUserData();
-            if (a.getUserData() instanceof Road) {
-                Road road = (Road)a.getUserData();
+            Body tmp = a; a = b; b = tmp;
+        }
+        if (a.getUserData() instanceof Enemy) {
+            Enemy enemy = (Enemy) a.getUserData();
+            if (enemy.isDestroyed()) return;
+            if (b.getUserData() instanceof Road) {
+                Road road = (Road)b.getUserData();
                 enemy.targetAt(road.DFS().getPosition());
+            }
+            else if (b.getUserData() instanceof Tower) {
+                Tower tower = (Tower)b.getUserData();
+                tower.addEnemy(enemy);
+            }
+            else if (b.getUserData() instanceof Bullet) {
+                Bullet bullet = (Bullet)b.getUserData();
+                if (enemy != bullet.target) return;
+                bullets.remove(bullet);
+                activeEntities.remove(bullet);
+                activeEntities.remove(enemy);
+                deadBodies.add(bullet.destroy());
+                deadBodies.add(enemy.destroy());
             }
         }
     }
@@ -130,30 +155,26 @@ public class GameField extends Stage implements ContactListener {
         Body a = contact.getFixtureA().getBody();
         Body b = contact.getFixtureB().getBody();
         if (b.getUserData() instanceof Enemy) {
-            Enemy enemy = (Enemy) b.getUserData();
-            if (a.getUserData() instanceof Target) {
-                deadBodies.add(enemy.die());
+            Body tmp = a; a = b; b = tmp;
+        }
+        if (a.getUserData() instanceof Enemy) {
+            Enemy enemy = (Enemy) a.getUserData();
+            if (enemy.isDestroyed()) return;
+            if (b.getUserData() instanceof Target) {
                 activeEntities.remove(enemy);
+                deadBodies.add(enemy.destroy());
                 SoundPlayer.play(SoundPlayer.SoundType.BOING);
+            }
+            else if (b.getUserData() instanceof Tower) {
+                Tower tower = (Tower)b.getUserData();
+                tower.removeEnemy(enemy);
             }
         }
     }
 
     @Override
-    public void preSolve(Contact contact, Manifold oldManifold) {
-
-    }
-
-    @Override
-    public void postSolve(Contact contact, ContactImpulse impulse) {
-
-    }
-
-    @Override
     public void draw() {
         super.draw();
-        for (Body body: deadBodies) world.destroyBody(body);
-        deadBodies.clear();
         renderer.render(world, camera.combined);
         drawer.draw(activeEntities.toArray(new IActiveEntity[activeEntities.size()]));
     }
@@ -163,4 +184,10 @@ public class GameField extends Stage implements ContactListener {
         camera.position.set(camera.viewportWidth / 2, camera.viewportHeight / 2, 0f);
         camera.update();
     }
+
+    @Override
+    public void preSolve(Contact contact, Manifold oldManifold) {}
+
+    @Override
+    public void postSolve(Contact contact, ContactImpulse impulse) {}
 }
