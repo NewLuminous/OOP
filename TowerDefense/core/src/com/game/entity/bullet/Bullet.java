@@ -62,12 +62,12 @@ public class Bullet extends GameEntity implements IMovingEntity {
 
     @Override
     public float getTextureHeight() {
-        return getTextures()[0].getHeight()/1.5f * GameConfig.VIEWPORT_HEIGHT / Gdx.graphics.getHeight();
+        return getTextures()[0].getHeight()/2f * GameConfig.VIEWPORT_HEIGHT / Gdx.graphics.getHeight();
     }
 
     @Override
     public float getTextureWidth() {
-        return getTextures()[0].getWidth()/1.5f * GameConfig.VIEWPORT_WIDTH / Gdx.graphics.getWidth();
+        return getTextures()[0].getWidth()/2f * GameConfig.VIEWPORT_WIDTH / Gdx.graphics.getWidth();
     }
 
     @Override

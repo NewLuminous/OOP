@@ -2,6 +2,8 @@ package com.game;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Preferences;
+import com.game.util.player.MusicPlayer;
+import com.game.util.player.SoundPlayer;
 
 /**
  * @brief   This class stores game settings
@@ -23,6 +25,7 @@ public final class GameConfig {
      */
     public static final int VIEWPORT_WIDTH = 32;
     public static final int VIEWPORT_HEIGHT = 18;
+    public static final int GRID_SIZE = 40;
 
     /**
      * The width of buttons on main menu.
@@ -45,7 +48,18 @@ public final class GameConfig {
     private static final String PREFS_NAME = "b2dtut";
 
     public GameConfig() {
+        MusicPlayer.setVolume(getMusicVolume());
+        MusicPlayer.setEnabled(isMusicEnabled());
+        SoundPlayer.setVolume(getSoundVolume());
+        SoundPlayer.setEnabled(isSoundEffectsEnabled());
+    }
 
+    public static float getScreenScaleX() {
+        return (float)Gdx.graphics.getWidth() / SCREEN_WIDTH;
+    }
+
+    public static float getScreenScaleY() {
+        return (float)Gdx.graphics.getHeight() / SCREEN_HEIGHT;
     }
 
     public static boolean insideViewport(double posx, double posy) {
@@ -65,6 +79,7 @@ public final class GameConfig {
     public void setSoundEffectsEnabled(boolean soundEffectsEnabled) {
         getPrefs().putBoolean(PREF_SOUND_ENABLED, soundEffectsEnabled);
         getPrefs().flush();
+        SoundPlayer.setEnabled(soundEffectsEnabled);
     }
 
     public boolean isMusicEnabled() {
@@ -74,6 +89,7 @@ public final class GameConfig {
     public void setMusicEnabled(boolean musicEnabled) {
         getPrefs().putBoolean(PREF_MUSIC_ENABLED, musicEnabled);
         getPrefs().flush();
+        MusicPlayer.setEnabled(musicEnabled);
     }
 
     public float getMusicVolume() {
@@ -83,6 +99,7 @@ public final class GameConfig {
     public void setMusicVolume(float volume) {
         getPrefs().putFloat(PREF_MUSIC_VOLUME, volume);
         getPrefs().flush();
+        MusicPlayer.setVolume(volume);
     }
 
     public float getSoundVolume() {
@@ -92,5 +109,6 @@ public final class GameConfig {
     public void setSoundVolume(float volume) {
         getPrefs().putFloat(PREF_SOUND_VOL, volume);
         getPrefs().flush();
+        SoundPlayer.setVolume(volume);
     }
 }

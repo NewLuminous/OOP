@@ -18,7 +18,7 @@ public class MainScreen implements Screen {
     @Override
     public void show() {
         MusicPlayer.play(MusicPlayer.BATTLE);
-        stage = new GameStage();
+        stage = new GameStage(parent);
     }
 
     @Override
@@ -33,7 +33,11 @@ public class MainScreen implements Screen {
 
     @Override
     public void resize(int width, int height) {
-        // TODO Auto-generated method stub
+        // change the stage's viewport when the screen size is changed
+        stage.getViewport().update(width, height, true);
+        stage.mapImg.setHeight(Gdx.graphics.getHeight());
+        stage.mapImg.setWidth(Gdx.graphics.getWidth());
+        stage.showUI();
     }
 
     @Override

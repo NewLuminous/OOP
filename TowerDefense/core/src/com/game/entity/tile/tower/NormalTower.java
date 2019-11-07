@@ -9,6 +9,7 @@ class NormalTower extends Tower {
         super(world, posx, posy, TowerType.NORMAL, TowerConfig.NORMAL_TOWER_RANGE);
         setRateOfFire(TowerConfig.NORMAL_TOWER_RATE_OF_FIRE);
         setDamage(TowerConfig.NORMAL_TOWER_DAMAGE);
+        setCost(TowerConfig.NORMAL_TOWER_COST);
     }
 
     @Override

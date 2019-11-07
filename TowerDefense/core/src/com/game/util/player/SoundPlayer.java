@@ -8,10 +8,16 @@ public class SoundPlayer extends AudioPlayer {
         BOING, PING
     }
 
+    private static Sound sound;
+    private static SoundType soundType;
+
+    private static float volume;
+    private static boolean enabled;
+
     private SoundPlayer() {}
 
     public final static void play(SoundType soundType) {
-        Sound sound;
+        if (sound != null && SoundPlayer.soundType != soundType) sound.dispose();
         switch (soundType) {
             case BOING:
                 sound = GameLoader.getManager().get(GameLoader.BOING_SOUND);
@@ -22,6 +28,18 @@ public class SoundPlayer extends AudioPlayer {
             default:
                 sound = GameLoader.getManager().get(GameLoader.PING_SOUND);
         }
-        sound.play();
+        SoundPlayer.soundType = soundType;
+        if (enabled) {
+            long soundId = sound.play(volume);
+            sound.setVolume(soundId, volume);
+        }
+    }
+
+    public final static void setVolume(float volume) {
+        SoundPlayer.volume = volume;
+    }
+
+    public final static void setEnabled(boolean enabled) {
+        SoundPlayer.enabled = enabled;
     }
 }

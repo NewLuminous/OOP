@@ -26,6 +26,7 @@ public abstract class Tower extends GameTile implements IActiveEntity {
     private double cooldown;
     private double range;
     private double damage;
+    private int cost;
     private float direction;
     private Body sensor;
     protected Texture[] textures;
@@ -73,6 +74,15 @@ public abstract class Tower extends GameTile implements IActiveEntity {
         this.damage = damage;
     }
 
+    public int getCost() {
+        return cost;
+    }
+
+    public void setCost(int cost) {
+        if (cost < 0) throw new IllegalArgumentException("Cost does not accept the negative value");
+        this.cost = cost;
+    }
+
     @Override
     public final float getDirection() {
         return direction;
@@ -80,12 +90,12 @@ public abstract class Tower extends GameTile implements IActiveEntity {
 
     @Override
     public float getTextureHeight() {
-        return (float)getTextures()[0].getHeight() * GameConfig.VIEWPORT_HEIGHT / Gdx.graphics.getHeight();
+        return 1 / GameConfig.getScreenScaleY();
     }
 
     @Override
     public float getTextureWidth() {
-        return (float)getTextures()[0].getWidth() * GameConfig.VIEWPORT_WIDTH / Gdx.graphics.getWidth();
+        return 1 / GameConfig.getScreenScaleX();
     }
 
     public void addEnemy(Enemy enemy) {
@@ -116,13 +126,15 @@ public abstract class Tower extends GameTile implements IActiveEntity {
             float deltaX = nearestEnemy.getPosition().x - getPosition().x;
             float deltaY = nearestEnemy.getPosition().y - getPosition().y;
             Vector2 delta = new Vector2(deltaX, deltaY);
-            direction = delta.angle();
+            int count = (int)(Math.abs(cooldown) / time) + 1;
+            direction += (delta.angle() - direction) / count;
             if (cooldown <= 0) {
                 cooldown = 1 / getRateOfFire();
                 return new Bullet(this, (int)getPosition().x, (int)getPosition().y, nearestEnemy);
             }
         }
-        cooldown -= time;
+        else if (cooldown <= 0) cooldown = .2f / getRateOfFire();
+        if (cooldown > 0) cooldown -= time;
         return null;
     }
 }

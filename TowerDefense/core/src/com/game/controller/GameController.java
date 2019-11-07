@@ -6,6 +6,7 @@ import com.badlogic.gdx.math.Vector2;
 
 public class GameController implements InputProcessor {
     public boolean left, right, up, down;
+    public boolean escape;
 
     public boolean isMouse1Down, isMouse2Down, isMouse3Down;
     private boolean isMouse1Up, isMouse2Up, isMouse3Up;
@@ -32,6 +33,10 @@ public class GameController implements InputProcessor {
                 down = true;
                 keyProcessed = true;
                 break;
+            case Input.Keys.ESCAPE:
+                escape = true;
+                keyProcessed = true;
+                break;
         }
         return keyProcessed;
     }
@@ -54,6 +59,10 @@ public class GameController implements InputProcessor {
                 break;
             case Input.Keys.DOWN:
                 down = false;
+                keyProcessed = true;
+                break;
+            case Input.Keys.ESCAPE:
+                escape = false;
                 keyProcessed = true;
                 break;
         }
@@ -123,6 +132,14 @@ public class GameController implements InputProcessor {
     public boolean isMouse1Click() {
         if (isMouse1Up) {
             isMouse1Up = false;
+            return true;
+        }
+        return false;
+    }
+
+    public boolean isMouse2Click() {
+        if (isMouse2Up) {
+            isMouse2Up = false;
             return true;
         }
         return false;

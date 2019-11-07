@@ -11,6 +11,9 @@ public class MusicPlayer extends AudioPlayer {
     private static Music music;
     private static int musicName;
 
+    private static float volume;
+    private static boolean enabled;
+
     private MusicPlayer() {}
 
     public final static void play(int musicName) {
@@ -33,6 +36,18 @@ public class MusicPlayer extends AudioPlayer {
         }
         MusicPlayer.musicName = musicName;
         music.setLooping(true);
-        music.play();
+        if (enabled) music.play();
+        music.setVolume(volume);
+    }
+
+    public final static void setVolume(float volume) {
+        MusicPlayer.volume = volume;
+        if (music != null) music.setVolume(volume);
+    }
+
+    public final static void setEnabled(boolean enabled) {
+        MusicPlayer.enabled = enabled;
+        if (music != null)
+            if (enabled) music.play(); else music.stop();
     }
 }
