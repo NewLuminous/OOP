@@ -16,7 +16,7 @@ public class MusicPlayer extends AudioPlayer {
 
     private MusicPlayer() {}
 
-    public final static void play(int musicName) {
+    public static void play(int musicName) {
         if (music != null) {
             if (MusicPlayer.musicName == musicName) return;
             music.dispose();
@@ -40,12 +40,12 @@ public class MusicPlayer extends AudioPlayer {
         music.setVolume(volume);
     }
 
-    public final static void setVolume(float volume) {
+    public static void setVolume(float volume) {
         MusicPlayer.volume = volume;
         if (music != null) music.setVolume(volume);
     }
 
-    public final static void setEnabled(boolean enabled) {
+    public static void setEnabled(boolean enabled) {
         MusicPlayer.enabled = enabled;
         if (music != null)
             if (enabled) music.play(); else music.stop();

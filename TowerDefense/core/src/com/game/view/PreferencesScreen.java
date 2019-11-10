@@ -19,14 +19,7 @@ public class PreferencesScreen implements Screen {
 
     private Main parent;
     private Stage stage;
-
     private Image background;
-
-    private Label titleLabel;
-    private Label volumeMusicLabel;
-    private Label volumeSoundLabel;
-    private Label musicOnOffLabel;
-    private Label soundOnOffLabel;
 
     public PreferencesScreen(Main Main) {
         parent = Main;
@@ -104,12 +97,12 @@ public class PreferencesScreen implements Screen {
             }
         });
 
-        titleLabel = new Label( "Preferences", skin );
+        Label titleLabel = new Label("Preferences", skin);
         titleLabel.setAlignment(Align.center);
-        volumeMusicLabel = new Label( "Music Volume", skin );
-        volumeSoundLabel = new Label( "Sound Volume", skin );
-        musicOnOffLabel = new Label( "Music", skin );
-        soundOnOffLabel = new Label( "Sound Effect", skin );
+        Label volumeMusicLabel = new Label("Music Volume", skin);
+        Label volumeSoundLabel = new Label("Sound Volume", skin);
+        Label musicOnOffLabel = new Label("Music", skin);
+        Label soundOnOffLabel = new Label("Sound Effect", skin);
 
         table.add(titleLabel).colspan(2).width(Gdx.graphics.getWidth() / 2).height(Gdx.graphics.getHeight() / 10);
         table.row().pad(10, 0, 0, 10);

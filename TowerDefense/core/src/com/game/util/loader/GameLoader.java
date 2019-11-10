@@ -63,6 +63,7 @@ public final class GameLoader {
     public static final String BACKGROUND = "background.png";
     public static final String MAP = "maps/map1.png";
     public static final String HP = "heart.png";
+    public static final String MENU = "onscreencontrols/lineLight31.png";
     public static final String START = "onscreencontrols/lineLight40.png";
     public static final String ITEM_BAR = "UI/red/red_button12.png";
     public static final String BOUNTY = "UI/yellow/yellow_circle.png";
@@ -99,6 +100,7 @@ public final class GameLoader {
         manager.load(BACKGROUND, Texture.class);
         manager.load(MAP, Texture.class);
         manager.load(HP, Texture.class);
+        manager.load(MENU, Texture.class);
         manager.load(START, Texture.class);
         manager.load(ITEM_BAR, Texture.class);
         manager.load(BOUNTY, Texture.class);
@@ -167,14 +169,14 @@ public final class GameLoader {
 
     /**
      * @brief       Battle (Normal)
-     * @authro      BoxCat Games
+     * @author      BoxCat Games
      * @copyright   CC BY 3.0
      */
     public static final String BATTLE_NORMAL_BY_BOXCAT_GAMES = MUSIC_FOLDER + "BoxCat_Games_-_20_-_Battle_Normal.mp3";
 
     /**
      * @brief       Battle (Boss)
-     * @authro      BoxCat Games
+     * @author      BoxCat Games
      */
     public static final String BATTLE_BOSS_BY_BOXCAT_GAMES = MUSIC_FOLDER + "BoxCat_Games_-_05_-_Battle_Boss.mp3";
 
@@ -190,15 +192,16 @@ public final class GameLoader {
     private static final String KENNEY_PIXEL_FONT = "Font/Kenney Pixel.ttf";
     public static final String KENNEY_PIXEL_72 = "Kenney Pixel 72.ttf";
 
+    private static final String KENNEY_FUTURE_NARROW_FONT = "Font/Kenney Future Narrow.ttf";
+    public static final String KENNEY_FUTURE_NARROW_36 = "Kenney Future Narrow 36.ttf";
+
     public static void queueAddFonts(){
-        /**
-         * Set the loaders for the generator and the fonts themselves
-         */
+        //Set the loaders for the generator and the fonts themselves
         FileHandleResolver resolver = new InternalFileHandleResolver();
         manager.setLoader(FreeTypeFontGenerator.class, new FreeTypeFontGeneratorLoader(resolver));
         manager.setLoader(BitmapFont.class, ".ttf", new FreetypeFontLoader(resolver));
 
-        /**
+        /*
          * Load to fonts via the generator (implicitely done by the FreetypeFontLoader).
          * @note    You MUST specify a FreetypeFontGenerator defining the ttf font file name and the size
          * 		    of the font to be generated. The names of the fonts are arbitrary and are not pointing
@@ -213,6 +216,11 @@ public final class GameLoader {
         pixelParams.fontFileName = KENNEY_PIXEL_FONT;
         pixelParams.fontParameters.size = 72;
         manager.load(KENNEY_PIXEL_72, BitmapFont.class, pixelParams);
+
+        FreetypeFontLoader.FreeTypeFontLoaderParameter futureParams = new FreetypeFontLoader.FreeTypeFontLoaderParameter();
+        futureParams.fontFileName = KENNEY_FUTURE_NARROW_FONT;
+        futureParams.fontParameters.size = 36;
+        manager.load(KENNEY_FUTURE_NARROW_36, BitmapFont.class, futureParams);
     }
 
     public static void queueAddParticleEffects(){

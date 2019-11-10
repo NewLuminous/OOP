@@ -6,7 +6,8 @@ import com.badlogic.gdx.math.Vector2;
 
 public class GameController implements InputProcessor {
     public boolean left, right, up, down;
-    public boolean escape;
+    public boolean escape, space;
+    public boolean[] num = new boolean[10];
 
     public boolean isMouse1Down, isMouse2Down, isMouse3Down;
     private boolean isMouse1Up, isMouse2Up, isMouse3Up;
@@ -15,56 +16,74 @@ public class GameController implements InputProcessor {
 
     @Override
     public boolean keyDown(int keycode) {
-        boolean keyProcessed = false;
+        boolean keyProcessed = true;
         switch (keycode) {
             case Input.Keys.LEFT:
                 left = true;
-                keyProcessed = true;
                 break;
             case Input.Keys.RIGHT:
                 right = true;
-                keyProcessed = true;
                 break;
             case Input.Keys.UP:
                 up = true;
-                keyProcessed = true;
                 break;
             case Input.Keys.DOWN:
                 down = true;
-                keyProcessed = true;
                 break;
             case Input.Keys.ESCAPE:
                 escape = true;
-                keyProcessed = true;
                 break;
+            case Input.Keys.SPACE:
+                space = true;
+                break;
+            case Input.Keys.NUM_1:
+                num[1] = true;
+                break;
+            case Input.Keys.NUM_2:
+                num[2] = true;
+                break;
+            case Input.Keys.NUM_3:
+                num[3] = true;
+                break;
+            default:
+                keyProcessed = false;
         }
         return keyProcessed;
     }
 
     @Override
     public boolean keyUp(int keycode) {
-        boolean keyProcessed = false;
+        boolean keyProcessed = true;
         switch (keycode) {
             case Input.Keys.LEFT:
                 left = false;
-                keyProcessed = true;
                 break;
             case Input.Keys.RIGHT:
                 right = false;
-                keyProcessed = true;
                 break;
             case Input.Keys.UP:
                 up = false;
-                keyProcessed = true;
                 break;
             case Input.Keys.DOWN:
                 down = false;
-                keyProcessed = true;
                 break;
             case Input.Keys.ESCAPE:
                 escape = false;
-                keyProcessed = true;
                 break;
+            case Input.Keys.SPACE:
+                space = false;
+                break;
+            case Input.Keys.NUM_1:
+                num[1] = false;
+                break;
+            case Input.Keys.NUM_2:
+                num[2] = false;
+                break;
+            case Input.Keys.NUM_3:
+                num[3] = false;
+                break;
+            default:
+                keyProcessed = false;
         }
         return keyProcessed;
     }

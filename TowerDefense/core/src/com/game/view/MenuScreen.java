@@ -44,6 +44,7 @@ public class MenuScreen implements Screen {
         newGame.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
+                parent.mainScreenContinued = false;
                 parent.changeScreen(ScreenType.APPLICATION);
             }
         });
@@ -51,7 +52,8 @@ public class MenuScreen implements Screen {
         _continue.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
-                parent.changeScreen(ScreenType.ENDGAME);
+                parent.mainScreenContinued = true;
+                parent.changeScreen(ScreenType.APPLICATION);
             }
         });
         TextButton settings = new TextButton("Settings", skin);

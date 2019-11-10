@@ -68,7 +68,7 @@ public final class GameConfig {
         return true;
     }
 
-    protected Preferences getPrefs() {
+    private Preferences getPrefs() {
         return Gdx.app.getPreferences(PREFS_NAME);
     }
 

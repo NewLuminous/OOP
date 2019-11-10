@@ -67,18 +67,14 @@ public final class BodyFactory {
     }
 
     public Body getCircleBody(float posx, float posy, float radius, boolean isSensor, Materials material, BodyDef.BodyType bodyType, boolean fixedRotation){
-        /**
-         * Creates a definition of the body.
-         */
+        //Creates a definition of the body.
         BodyDef circleBodyDef = new BodyDef();
         circleBodyDef.type = bodyType;
         circleBodyDef.position.x = posx;
         circleBodyDef.position.y = posy;
         circleBodyDef.fixedRotation = fixedRotation;
 
-        /**
-         * Creates the body to attach said definition
-         */
+        //Creates the body to attach said definition
         Body circleBody = world.createBody(circleBodyDef);
         CircleShape circleShape = new CircleShape();
         circleShape.setRadius(radius);
@@ -105,18 +101,14 @@ public final class BodyFactory {
     }
 
     public Body getBoxBody(float posx, float posy, float width, float height, boolean isSensor, Materials material, BodyDef.BodyType bodyType, boolean fixedRotation){
-        /**
-         * Creates a definition of the body.
-         */
+        //Creates a definition of the body.
         BodyDef boxBodyDef = new BodyDef();
         boxBodyDef.type = bodyType;
         boxBodyDef.position.x = posx;
         boxBodyDef.position.y = posy;
         boxBodyDef.fixedRotation = fixedRotation;
 
-        /**
-         * Creates the body to attach said definition
-         */
+        //Creates the body to attach said definition
         Body boxBody = world.createBody(boxBodyDef);
         PolygonShape poly = new PolygonShape();
         poly.setAsBox(width/2, height/2);

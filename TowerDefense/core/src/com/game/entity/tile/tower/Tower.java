@@ -1,6 +1,5 @@
 package com.game.entity.tile.tower;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
@@ -26,10 +25,8 @@ public abstract class Tower extends GameTile implements IActiveEntity {
     private double cooldown;
     private double range;
     private double damage;
-    private int cost;
     private float direction;
-    private Body sensor;
-    protected Texture[] textures;
+    Texture[] textures;
 
     public ArrayList<Enemy> enemies;
     private Enemy nearestEnemy;
@@ -38,7 +35,7 @@ public abstract class Tower extends GameTile implements IActiveEntity {
         super(world, posx, posy);
         setRange(range);
         this.type = type;
-        sensor = BodyFactory.getInstance(world).getCircleBody(posx, posy, range, true);
+        Body sensor = BodyFactory.getInstance(world).getCircleBody(posx, posy, range, true);
         sensor.setUserData(this);
         enemies = new ArrayList<Enemy>();
     }
@@ -74,13 +71,12 @@ public abstract class Tower extends GameTile implements IActiveEntity {
         this.damage = damage;
     }
 
-    public int getCost() {
-        return cost;
-    }
-
-    public void setCost(int cost) {
-        if (cost < 0) throw new IllegalArgumentException("Cost does not accept the negative value");
-        this.cost = cost;
+    public static int getBuildCost(TowerType type) {
+        switch (type) {
+            case NORMAL:
+                return TowerConfig.NORMAL_TOWER_COST;
+        }
+        return Integer.MAX_VALUE;
     }
 
     @Override
@@ -106,11 +102,15 @@ public abstract class Tower extends GameTile implements IActiveEntity {
         if (enemies.contains(enemy)) enemies.remove(enemy);
     }
 
-    public Bullet fire(float time) {
+    public void removeDeadEnemies() {
         for (Iterator<Enemy> it = enemies.iterator(); it.hasNext();) {
             Enemy enemy = it.next();
             if (enemy.isDestroyed()) it.remove();
         }
+    }
+
+    private void updateNearestEnemy() {
+        removeDeadEnemies();
         if (!enemies.contains(nearestEnemy)) {
             float minDistance = Float.POSITIVE_INFINITY;
             nearestEnemy = null;
@@ -122,6 +122,10 @@ public abstract class Tower extends GameTile implements IActiveEntity {
                 }
             }
         }
+    }
+
+    public Bullet fire(float time) {
+        updateNearestEnemy();
         if (nearestEnemy != null) {
             float deltaX = nearestEnemy.getPosition().x - getPosition().x;
             float deltaY = nearestEnemy.getPosition().y - getPosition().y;

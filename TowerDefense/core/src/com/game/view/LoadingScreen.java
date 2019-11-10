@@ -34,14 +34,11 @@ public class LoadingScreen implements Screen {
     @Override
     public void show() {
         stateTime = 0;
-        /**
-         * Load loading images and wait until finished.
-         */
+        //Load loading images and wait until finished.
         GameLoader.queueAddLoadingImages();
         GameLoader.manager.finishLoading();
-        /**
-         * Get images used to display loading images
-         */
+
+        //Get images used to display loading images
         TextureAtlas atlas = GameLoader.manager.get(GameLoader.LOADING_IMAGES);
         title = atlas.findRegion("staying-alight-logo");
         dash = atlas.findRegion("loading-dash");
@@ -53,20 +50,14 @@ public class LoadingScreen implements Screen {
 
     @Override
     public void render(float delta) {
-        /**
-         * Clear the screen
-         */
+        ///Clear the screen
         Gdx.gl.glClearColor(0, 0, 0, 1);
         Gdx.gl.glBlendFunc(GL20.GL_SRC_ALPHA, GL20.GL_ONE_MINUS_SRC_ALPHA);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
-        /**
-         * Accumulate elapsed animation time
-         */
+        //Accumulate elapsed animation time
         stateTime += delta;
-        /**
-         * Get current frame of animation for the current stateTime
-         */
+        //Get current frame of animation for the current stateTime
         TextureRegion currentFrame = flameAnimation.getKeyFrame(stateTime, true);
 
         sb.begin();
@@ -75,9 +66,7 @@ public class LoadingScreen implements Screen {
         sb.draw(title, (Gdx.graphics.getWidth() - titleSize.x) / 2, (Gdx.graphics.getHeight() - titleSize.y) / 1.5f, titleSize.x, titleSize.y);
         sb.end();
 
-        /**
-         * Check if the asset manager has finished loading
-         */
+        //Check if the asset manager has finished loading
         if (GameLoader.manager.update()) {
             ++currentLoadingStage;
             if (currentLoadingStage == GameLoader.AssetType.values().length) {
@@ -112,13 +101,9 @@ public class LoadingScreen implements Screen {
                 }
             }
             if (currentLoadingStage >= GameLoader.AssetType.values().length) {
-                /**
-                 * Timer to stay on loading screen for short period once done loading
-                 */
+                //Timer to stay on loading screen for short period once done loading
                 countDown -= delta;
-                /**
-                 * Cap loading stage as will use later to display progress bar.
-                 */
+                //Cap loading stage as will use later to display progress bar.
                 currentLoadingStage = GameLoader.AssetType.values().length;
                 if (countDown < 0) {
                     parent.changeScreen(ScreenType.MENU);

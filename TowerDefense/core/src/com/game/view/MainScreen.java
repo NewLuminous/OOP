@@ -57,6 +57,6 @@ public class MainScreen implements Screen {
 
     @Override
     public void dispose() {
-        // TODO Auto-generated method stub
+        stage.dispose();
     }
 }

@@ -17,10 +17,10 @@ public abstract class Enemy extends GameEntity implements IMovingEntity {
     private int armor;
     private int bounty;
 
-    protected double speed;
-    protected Texture[] textures;
+    double speed;
+    Texture[] textures;
 
-    boolean destroyed = false;
+    private boolean destroyed = false;
 
     public Enemy(Body body, int hp) {
         super(body);

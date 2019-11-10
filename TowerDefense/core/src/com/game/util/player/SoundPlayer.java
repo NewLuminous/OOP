@@ -16,7 +16,7 @@ public class SoundPlayer extends AudioPlayer {
 
     private SoundPlayer() {}
 
-    public final static void play(SoundType soundType) {
+    public static void play(SoundType soundType) {
         if (sound != null && SoundPlayer.soundType != soundType) sound.dispose();
         switch (soundType) {
             case BOING:
@@ -35,11 +35,11 @@ public class SoundPlayer extends AudioPlayer {
         }
     }
 
-    public final static void setVolume(float volume) {
+    public static void setVolume(float volume) {
         SoundPlayer.volume = volume;
     }
 
-    public final static void setEnabled(boolean enabled) {
+    public static void setEnabled(boolean enabled) {
         SoundPlayer.enabled = enabled;
     }
 }

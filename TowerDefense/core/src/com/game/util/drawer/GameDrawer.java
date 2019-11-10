@@ -25,7 +25,7 @@ public class GameDrawer {
     public void draw(IActiveEntity[] entities) {
         batch.begin();
         for (IActiveEntity entity: entities) {
-            boolean flag = entity instanceof Tower ? false: true;
+            boolean flag = !(entity instanceof Tower);
             Texture[] textures = entity.getTextures();
             for (Texture texture: textures) {
                 Vector2 size = new Vector2(entity.getTextureWidth(), entity.getTextureHeight());

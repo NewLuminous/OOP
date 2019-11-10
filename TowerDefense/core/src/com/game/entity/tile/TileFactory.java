@@ -11,8 +11,8 @@ import com.game.entity.tile.tower.TowerFactory;
 public final class TileFactory {
     private TileFactory() {}
 
-    public static GameTile getTile(World world, float posx, float posy, GameTile.TileType tile) {
-        switch (tile) {
+    public static GameTile getTile(World world, float posx, float posy, GameTile.TileType tileType) {
+        switch (tileType) {
             case MOUNTAIN:
                 return new Mountain(world, (int)posx, (int)posy);
             case ROAD:

@@ -16,9 +16,9 @@ public class Bullet extends GameEntity implements IMovingEntity {
 
     private Tower tower;
     public Enemy target;
-    protected Texture[] textures;
+    private Texture[] textures;
 
-    boolean destroyed = false;
+    private boolean destroyed = false;
 
     public Bullet(Tower tower, int posx, int posy, Enemy target) {
         super(BulletBodyFactory.getBody(tower, posx, posy));

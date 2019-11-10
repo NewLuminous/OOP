@@ -2,8 +2,8 @@
  * @brief	This is where the game starts
  * @author	Nguyen Minh Tan
  * @author	Vu Minh Ngoc
- * @version	0.3.0
- * @date	11/08/2019 (November 8th, 2019)
+ * @version	0.4.0
+ * @date	11/10/2019 (November 10th, 2019)
  */
 package com.game;
 
@@ -13,6 +13,7 @@ import com.game.view.*;
 
 public class Main extends Game {
 	private GameConfig gameConfig;
+	public boolean mainScreenContinued;
 
 	private LoadingScreen loadingScreen;
 	private PreferencesScreen preferencesScreen;

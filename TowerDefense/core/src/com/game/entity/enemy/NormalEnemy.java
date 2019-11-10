@@ -9,7 +9,7 @@ import com.game.util.loader.GameLoader;
 
 class NormalEnemy extends Enemy {
     NormalEnemy(World world, int posx, int posy) {
-        super(BodyFactory.getInstance(world).getCircleBody(posx, posy, EnemyConfig.NORMAL_ENEMY_RADIUS, false, BodyDef.BodyType.DynamicBody), EnemyConfig.NORMAL_ENEMY_HP);
+        super(BodyFactory.getInstance(world).getCircleBody(posx, posy, EnemyConfig.NORMAL_ENEMY_RADIUS, true, BodyDef.BodyType.DynamicBody), EnemyConfig.NORMAL_ENEMY_HP);
         setArmor(EnemyConfig.NORMAL_ENEMY_ARMOR);
         setBounty(EnemyConfig.NORMAL_ENEMY_BOUNTY);
         speed = EnemyConfig.NORMAL_ENEMY_SPEED;
