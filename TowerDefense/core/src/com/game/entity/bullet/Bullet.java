@@ -47,11 +47,11 @@ public class Bullet extends GameEntity implements IMovingEntity {
                 case NORMAL:
                     textures[0] = GameLoader.getManager().get(GameLoader.NORMAL_TOWER_BULLET);
                     break;
-                case SNIPER:
-                    textures[0] = GameLoader.getManager().get(GameLoader.SNIPER_TOWER_BULLET);
-                    break;
                 case MACHINE_GUN:
                     textures[0] = GameLoader.getManager().get(GameLoader.MACHINE_GUN_BULLET);
+                    break;
+                case SNIPER:
+                    textures[0] = GameLoader.getManager().get(GameLoader.SNIPER_TOWER_BULLET);
                     break;
                 default:
                     textures[0] = GameLoader.getManager().get(GameLoader.NORMAL_TOWER_BULLET);

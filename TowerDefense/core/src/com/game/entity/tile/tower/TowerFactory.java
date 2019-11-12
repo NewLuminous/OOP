@@ -9,9 +9,9 @@ public final class TowerFactory {
         switch (tower) {
             case NORMAL:
                 return new NormalTower(world, (int)posx, (int)posy);
-            case SNIPER:
-                return null;
             case MACHINE_GUN:
+                return null;
+            case SNIPER:
                 return null;
             default:
                 return new NormalTower(world, (int)posx, (int)posy);

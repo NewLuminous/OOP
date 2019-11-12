@@ -7,7 +7,7 @@ import com.game.entity.GameEntity;
 public abstract class GameTile extends GameEntity {
     public enum TileType {
         MOUNTAIN, ROAD, SPAWNER, TARGET, OBSTACLE,
-        NORMAL_TOWER, SNIPER_TOWER, MACHINE_GUN_TOWER
+        NORMAL_TOWER, MACHINE_GUN_TOWER, SNIPER_TOWER
     }
 
     public GameTile(World world, int posx, int posy) {

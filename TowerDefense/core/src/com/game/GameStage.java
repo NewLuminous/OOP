@@ -104,7 +104,7 @@ public class GameStage {
     }
 
     private void saveGame() {
-        if (!(field.allEnemiesDestroyed() && noEnemiesLeft())) return;
+        if (!(field.allEnemiesDestroyed() && noEnemiesLeft() && hp > 0)) return;
         StringBuilder sb = new StringBuilder();
         for (int i = 0; i <= GameConfig.VIEWPORT_HEIGHT; ++i) {
             for (int j = 0; j <= GameConfig.VIEWPORT_WIDTH; ++j) {
@@ -124,33 +124,33 @@ public class GameStage {
 
         Image bountyButton = new Image((Texture) GameLoader.manager.get(GameLoader.BOUNTY));
         Image normalTowerButton = new Image((Texture) GameLoader.manager.get(GameLoader.NORMAL_TOWER_BUTTON));
-        Image sniperTowerButton = new Image((Texture) GameLoader.manager.get(GameLoader.SNIPER_TOWER_BUTTON));
         Image machineTowerButton = new Image((Texture) GameLoader.manager.get(GameLoader.MACHINE_GUN_TOWER_BUTTON));
+        Image sniperTowerButton = new Image((Texture) GameLoader.manager.get(GameLoader.SNIPER_TOWER_BUTTON));
         buttons = new ArrayList<Image>();
         buttons.add(bountyButton);
         buttons.add(normalTowerButton);
-        buttons.add(sniperTowerButton);
         buttons.add(machineTowerButton);
+        buttons.add(sniperTowerButton);
         for (Image button : buttons) field.addActor(button);
 
         Image bountyLabel = new Image((Texture) GameLoader.manager.get(GameLoader.BOUNTY_SUM));
         Image normalTowerLabel = new Image((Texture) GameLoader.manager.get(GameLoader.NORMAL_TOWER_COST));
-        Image sniperTowerLabel = new Image((Texture) GameLoader.manager.get(GameLoader.SNIPER_TOWER_COST));
         Image machineTowerLabel = new Image((Texture) GameLoader.manager.get(GameLoader.MACHINE_GUN_TOWER_COST));
+        Image sniperTowerLabel = new Image((Texture) GameLoader.manager.get(GameLoader.SNIPER_TOWER_COST));
         labels = new ArrayList<Image>();
         labels.add(bountyLabel);
         labels.add(normalTowerLabel);
-        labels.add(sniperTowerLabel);
         labels.add(machineTowerLabel);
+        labels.add(sniperTowerLabel);
         for (Image label : labels) field.addActor(label);
 
         Image normalTowerImg = new Image((Texture) GameLoader.manager.get(GameLoader.NORMAL_TOWER_HEAD));
-        Image sniperTowerImg = new Image((Texture) GameLoader.manager.get(GameLoader.SNIPER_TOWER_HEAD));
         Image machineTowerImg = new Image((Texture) GameLoader.manager.get(GameLoader.MACHINE_GUN_TOWER_HEAD));
+        Image sniperTowerImg = new Image((Texture) GameLoader.manager.get(GameLoader.SNIPER_TOWER_HEAD));
         towers = new ArrayList<Image>();
         towers.add(normalTowerImg);
-        towers.add(sniperTowerImg);
         towers.add(machineTowerImg);
+        towers.add(sniperTowerImg);
         for (Image tower : towers) field.addActor(tower);
 
         BitmapFont pixelFont = GameLoader.getManager().get(GameLoader.KENNEY_PIXEL_72);
@@ -159,9 +159,13 @@ public class GameStage {
 
         Label moneyLabel = new Label(String.format("%5d",money), new Label.LabelStyle(pixelFont, Color.BLACK));
         Label normalTowerCost = new Label(Tower.getBuildCost(Tower.TowerType.NORMAL) + "", new Label.LabelStyle(pixelFont, Color.BLACK));
+        Label machineGunTowerCost = new Label(Tower.getBuildCost(Tower.TowerType.MACHINE_GUN) + "", new Label.LabelStyle(pixelFont, Color.BLACK));
+        Label sniperTowerCost = new Label(Tower.getBuildCost(Tower.TowerType.SNIPER) + "", new Label.LabelStyle(pixelFont, Color.BLACK));
         moneyAndCost = new ArrayList<Label>();
         moneyAndCost.add(moneyLabel);
         moneyAndCost.add(normalTowerCost);
+        moneyAndCost.add(machineGunTowerCost);
+        moneyAndCost.add(sniperTowerCost);
         for (Label label : moneyAndCost) field.addActor(label);
 
         bountyImg = new Label("$", new Label.LabelStyle(pixelFont, Color.WHITE));
@@ -252,7 +256,7 @@ public class GameStage {
             stages[1].add(new SpawnTimer(Enemy.EnemyType.NORMAL, 0.5f));
 
         for (int i = 2; i < STAGE_COUNT; ++i)
-            for (int j = 0; j < i * i; ++j) stages[i].add(new SpawnTimer(Enemy.EnemyType.NORMAL, 1.8f/(i * i)));
+            for (int j = 0; j < i * i; ++j) stages[i].add(new SpawnTimer(Enemy.EnemyType.NORMAL, 1.45f/(i * i)));
     }
 
     void nextStage() {

@@ -16,7 +16,7 @@ import java.util.Iterator;
 
 public abstract class Tower extends GameTile implements IActiveEntity {
     public enum TowerType {
-        NORMAL, SNIPER, MACHINE_GUN
+        NORMAL, MACHINE_GUN, SNIPER
     }
 
     private TowerType type;
@@ -75,6 +75,10 @@ public abstract class Tower extends GameTile implements IActiveEntity {
         switch (type) {
             case NORMAL:
                 return TowerConfig.NORMAL_TOWER_COST;
+            case MACHINE_GUN:
+                return TowerConfig.MACHINE_GUN_TOWER_COST;
+            case SNIPER:
+                return TowerConfig.SNIPER_TOWER_COST;
         }
         return Integer.MAX_VALUE;
     }

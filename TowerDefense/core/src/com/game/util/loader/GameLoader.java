@@ -70,10 +70,10 @@ public final class GameLoader {
     public static final String BOUNTY_SUM = "UI/yellow/yellow_button13.png";
     public static final String NORMAL_TOWER_BUTTON = "UI/green/green_button06.png";
     public static final String NORMAL_TOWER_COST = "UI/green/green_button13.png";
-    public static final String SNIPER_TOWER_BUTTON = "UI/red/red_button03.png";
-    public static final String SNIPER_TOWER_COST = "UI/red/red_button10.png";
     public static final String MACHINE_GUN_TOWER_BUTTON = "UI/blue/blue_button06.png";
     public static final String MACHINE_GUN_TOWER_COST = "UI/blue/blue_button13.png";
+    public static final String SNIPER_TOWER_BUTTON = "UI/red/red_button03.png";
+    public static final String SNIPER_TOWER_COST = "UI/red/red_button10.png";
 
     private static final String ENEMY_FOLDER = "PNG/Default size/enemies/";
     public static final String NORMAL_ENEMY = ENEMY_FOLDER + "towerDefense_tile245.png";
@@ -86,15 +86,15 @@ public final class GameLoader {
     private static final String TOWER_FOLDER = "PNG/Default size/towers/";
     public static final String NORMAL_TOWER_HEAD = TOWER_FOLDER + "towerDefense_tile249.png";
     public static final String NORMAL_TOWER_BODY = TOWER_FOLDER + "towerDefense_tile180.png";
-    public static final String SNIPER_TOWER_HEAD = TOWER_FOLDER + "towerDefense_tile206.png";
-    public static final String SNIPER_TOWER_BODY = TOWER_FOLDER + "towerDefense_tile181.png";
     public static final String MACHINE_GUN_TOWER_HEAD = TOWER_FOLDER + "towerDefense_tile203.png";
     public static final String MACHINE_GUN_TOWER_BODY = TOWER_FOLDER + "towerDefense_tile182.png";
+    public static final String SNIPER_TOWER_HEAD = TOWER_FOLDER + "towerDefense_tile206.png";
+    public static final String SNIPER_TOWER_BODY = TOWER_FOLDER + "towerDefense_tile181.png";
 
     public static final String BULLET_FOLDER = "PNG/Default size/bullets/";
     public static final String NORMAL_TOWER_BULLET = BULLET_FOLDER + "towerDefense_tile295.png";
-    public static final String SNIPER_TOWER_BULLET = BULLET_FOLDER + "towerDefense_tile252.png";
     public static final String MACHINE_GUN_BULLET = BULLET_FOLDER + "towerDefense_tile273.png";
+    public static final String SNIPER_TOWER_BULLET = BULLET_FOLDER + "towerDefense_tile252.png";
 
     public static void queueAddImages() {
         manager.load(BACKGROUND, Texture.class);
@@ -107,10 +107,10 @@ public final class GameLoader {
         manager.load(BOUNTY_SUM, Texture.class);
         manager.load(NORMAL_TOWER_BUTTON, Texture.class);
         manager.load(NORMAL_TOWER_COST, Texture.class);
-        manager.load(SNIPER_TOWER_BUTTON, Texture.class);
-        manager.load(SNIPER_TOWER_COST, Texture.class);
         manager.load(MACHINE_GUN_TOWER_BUTTON, Texture.class);
         manager.load(MACHINE_GUN_TOWER_COST, Texture.class);
+        manager.load(SNIPER_TOWER_BUTTON, Texture.class);
+        manager.load(SNIPER_TOWER_COST, Texture.class);
 
         manager.load(NORMAL_ENEMY, Texture.class);
         manager.load(TANKER_ENEMY_HEAD, Texture.class);
@@ -121,14 +121,14 @@ public final class GameLoader {
 
         manager.load(NORMAL_TOWER_HEAD, Texture.class);
         manager.load(NORMAL_TOWER_BODY, Texture.class);
-        manager.load(SNIPER_TOWER_HEAD, Texture.class);
-        manager.load(SNIPER_TOWER_BODY, Texture.class);
         manager.load(MACHINE_GUN_TOWER_HEAD, Texture.class);
         manager.load(MACHINE_GUN_TOWER_BODY, Texture.class);
+        manager.load(SNIPER_TOWER_HEAD, Texture.class);
+        manager.load(SNIPER_TOWER_BODY, Texture.class);
 
         manager.load(NORMAL_TOWER_BULLET, Texture.class);
-        manager.load(SNIPER_TOWER_BULLET, Texture.class);
         manager.load(MACHINE_GUN_BULLET, Texture.class);
+        manager.load(SNIPER_TOWER_BULLET, Texture.class);
     }
 
     /**

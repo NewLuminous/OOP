@@ -23,10 +23,10 @@ public final class TileFactory {
                 return new Target(world, (int)posx, (int)posy);
             case NORMAL_TOWER:
                 return TowerFactory.getTower(world, posx, posy, Tower.TowerType.NORMAL);
-            case SNIPER_TOWER:
-                return TowerFactory.getTower(world, posx, posy, Tower.TowerType.SNIPER);
             case MACHINE_GUN_TOWER:
                 return TowerFactory.getTower(world, posx, posy, Tower.TowerType.MACHINE_GUN);
+            case SNIPER_TOWER:
+                return TowerFactory.getTower(world, posx, posy, Tower.TowerType.SNIPER);
         }
         return null;
     }

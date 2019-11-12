@@ -15,9 +15,9 @@ final class BulletBodyFactory {
 
     static Body getBody(Tower tower, int posx, int posy) {
         switch (tower.getType()) {
-            case SNIPER:
-                return BodyFactory.getInstance(tower.getWorld()).getCircleBody(posx, posy, BULLET_SIZE, true);
             case MACHINE_GUN:
+                return BodyFactory.getInstance(tower.getWorld()).getCircleBody(posx, posy, BULLET_SIZE, true);
+            case SNIPER:
                 return BodyFactory.getInstance(tower.getWorld()).getCircleBody(posx, posy, BULLET_SIZE, true);
             default:
                 return BodyFactory.getInstance(tower.getWorld()).getCircleBody(posx, posy, BULLET_SIZE, true);
