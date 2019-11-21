@@ -223,7 +223,7 @@ public class GameField extends Stage implements ContactListener {
                 activeEntities.remove(enemy);
                 deadBodies.add(bullet.destroy());
                 deadBodies.add(enemy.destroy());
-                bountySum += 10;
+                bountySum += 20;
             }
         }
     }

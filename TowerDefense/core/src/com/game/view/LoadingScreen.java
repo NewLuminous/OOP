@@ -42,7 +42,7 @@ public class LoadingScreen implements Screen {
         TextureAtlas atlas = GameLoader.manager.get(GameLoader.LOADING_IMAGES);
         title = atlas.findRegion("staying-alight-logo");
         dash = atlas.findRegion("loading-dash");
-        flameAnimation = new Animation<>(0.07f, atlas.findRegions("flames/flames"), Animation.PlayMode.LOOP);
+        flameAnimation = new Animation(0.07f, atlas.findRegions("flames/flames"), Animation.PlayMode.LOOP);
 
         System.out.println("Loading images...");
         GameLoader.queueAddImages();
