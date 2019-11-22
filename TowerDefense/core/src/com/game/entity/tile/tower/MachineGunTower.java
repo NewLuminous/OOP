@@ -6,9 +6,9 @@ import com.game.util.loader.GameLoader;
 
 class MachineGunTower extends Tower {
     MachineGunTower (World world, int posx, int posy) {
-        super(world, posx, posy, TowerType.NORMAL, TowerConfig.NORMAL_TOWER_RANGE);
-        setRateOfFire(TowerConfig.NORMAL_TOWER_RATE_OF_FIRE);
-        setDamage(TowerConfig.NORMAL_TOWER_DAMAGE);
+        super(world, posx, posy, TowerType.MACHINE_GUN, TowerConfig.MACHINE_GUN_TOWER_RANGE);
+        setRateOfFire(TowerConfig.MACHINE_GUN_TOWER_RATE_OF_FIRE);
+        setDamage(TowerConfig.MACHINE_GUN_TOWER_DAMAGE);
     }
 
     @Override
