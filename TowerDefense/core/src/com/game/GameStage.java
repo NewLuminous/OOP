@@ -254,18 +254,24 @@ public class GameStage {
         stages[0].add(new SpawnTimer(Enemy.EnemyType.SMALLER, 1.9f));
         stages[0].add(new SpawnTimer(Enemy.EnemyType.NORMAL, 0.5f));
         stages[0].add(new SpawnTimer(Enemy.EnemyType.TANKER, 0.6f));
+        stages[0].add(new SpawnTimer(Enemy.EnemyType.BOSS, 0.7f));
+        stages[0].add(new SpawnTimer(Enemy.EnemyType.BOSS, 1f));
         for (int i = 0; i < 7; ++i)
             stages[1].add(new SpawnTimer(Enemy.EnemyType.NORMAL, 0.5f));
         for (int i = 0; i < 7; ++i)
             stages[1].add(new SpawnTimer(Enemy.EnemyType.TANKER, 0.7f));
         for (int i = 0; i < 7; ++i)
             stages[1].add(new SpawnTimer(Enemy.EnemyType.SMALLER, 0.5f));
+        for (int i = 0; i < 7; ++i)
+            stages[1].add(new SpawnTimer(Enemy.EnemyType.BOSS, 0.8f));
         for (int i = 2; i < STAGE_COUNT; ++i)
             for (int j = 0; j < i * i; ++j) stages[i].add(new SpawnTimer(Enemy.EnemyType.NORMAL, 0.85f/(i * i)));
         for (int i = 2; i < STAGE_COUNT; ++i)
             for (int j = 0; j < i * i; ++j) stages[i].add(new SpawnTimer(Enemy.EnemyType.TANKER, 0.95f/(i * i)));
         for (int i = 2; i < STAGE_COUNT; ++i)
             for (int j = 0; j < i * i; ++j) stages[i].add(new SpawnTimer(Enemy.EnemyType.SMALLER, 1.45f/(i * i)));
+        for (int i = 2; i < STAGE_COUNT; ++i)
+            for (int j = 0; j < i * i; ++j) stages[i].add(new SpawnTimer(Enemy.EnemyType.SMALLER, 1.25f/(i * i)));
     }
 
     void nextStage() {

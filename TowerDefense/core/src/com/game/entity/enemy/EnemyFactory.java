@@ -14,7 +14,7 @@ public final class EnemyFactory {
             case SMALLER:
                 return new SmallerEnemy(world, (int)posx, (int)posy);
             case BOSS:
-                return null;
+                return new BossEnemy(world, (int)posx, (int)posy);
             default:
                 return new NormalEnemy(world, (int)posx, (int)posy);
         }

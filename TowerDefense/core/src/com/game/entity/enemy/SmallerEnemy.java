@@ -9,7 +9,7 @@ import com.game.util.loader.GameLoader;
 
 public class SmallerEnemy extends Enemy{
     SmallerEnemy(World world , int posx , int posy) {
-        super(BodyFactory.getInstance(world).getCircleBody(posx, posy, EnemyConfig.SMALLER_ENEMY_RADIUS, true, BodyDef.BodyType.DynamicBody), EnemyConfig.SMALLER_ENRMY_HP);
+        super(BodyFactory.getInstance(world).getCircleBody(posx, posy, EnemyConfig.SMALLER_ENEMY_RADIUS, true, BodyDef.BodyType.DynamicBody), EnemyConfig.SMALLER_ENEMY_HP);
         setArmor(EnemyConfig.SMALLER_ENEMY_ARMOR);
         setBounty(EnemyConfig.SMALLER_ENEMY_BOUNTY);
         speed = EnemyConfig.SMALLER_ENEMY_SPEED;

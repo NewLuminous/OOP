@@ -14,10 +14,16 @@ final class EnemyConfig {
     static float TANKER_ENEMY_SPEED = 8;
 
     static float SMALLER_ENEMY_RADIUS = 0.6f;
-    static int SMALLER_ENRMY_HP = 60;
+    static int SMALLER_ENEMY_HP = 60;
     static int SMALLER_ENEMY_ARMOR;
     static int SMALLER_ENEMY_BOUNTY;
     static float SMALLER_ENEMY_SPEED = 10;
+
+    static float BOSSS_ENEMY_RADIUS = 1f;
+    static int BOSS_ENEMY_HP = 150;
+    static int BOSS_ENEMY_ARMOR;
+    static int BOSS_ENEMY_BOUNTY;
+    static float BOSS_ENEMY_SPEED = 6;
 
     private EnemyConfig() {}
 }
