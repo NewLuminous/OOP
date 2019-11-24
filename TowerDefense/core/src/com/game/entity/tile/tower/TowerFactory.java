@@ -12,7 +12,7 @@ public final class TowerFactory {
             case MACHINE_GUN:
                 return new MachineGunTower(world, (int)posx, (int)posy);
             case SNIPER:
-                return null;
+                return new SniperTower(world, (int)posx, (int)posy);
             default:
                 return new NormalTower(world, (int)posx, (int)posy);
         }
