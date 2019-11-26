@@ -53,7 +53,7 @@ public class GameField extends Stage implements ContactListener {
         world = new World(new Vector2(0, 0), true);
         world.setContactListener(this);
 
-        renderer = new Box2DDebugRenderer(false,true,false,true,true,true);
+        renderer = new Box2DDebugRenderer(true,true,true,true,true,true);
         setupCamera();
 
         controller = new GameController();
