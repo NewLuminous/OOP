@@ -61,6 +61,8 @@ public final class GameLoader {
      * Images
      */
     public static final String BACKGROUND = "background.png";
+    public static final String VICTORY = "youwin.png";
+    public static final String DEFEAT = "youlose.png";
     public static final String MAP = "maps/map1.png";
     public static final String HP = "heart.png";
     public static final String MENU = "onscreencontrols/lineLight31.png";
@@ -98,6 +100,8 @@ public final class GameLoader {
 
     public static void queueAddImages() {
         manager.load(BACKGROUND, Texture.class);
+        manager.load(VICTORY, Texture.class);
+        manager.load(DEFEAT, Texture.class);
         manager.load(MAP, Texture.class);
         manager.load(HP, Texture.class);
         manager.load(MENU, Texture.class);

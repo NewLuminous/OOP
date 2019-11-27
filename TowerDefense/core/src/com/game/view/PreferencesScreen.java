@@ -41,7 +41,6 @@ public class PreferencesScreen implements Screen {
         table.setDebug(true);
         stage.addActor(table);
 
-        // temporary until we have asset manager in
         Skin skin = GameLoader.getManager().get(GameLoader.GLASSY_SKIN);
 
         //music

@@ -1,0 +1,34 @@
+1. Clone the project
+2. Import the project as a gradle project
+3. Right-click at the project -> Open Module Settings
+	a) Project Settings:
+	- Project
+		+ Project SDK -> Select appropriate SDK version
+	- Modules:
+		+ Add -> Import Module -> Select android, core, desktop, html
+	b) Platform Settings:
+	-SDKs:
+		+ Add -> Android SDK -> Select appropriate Android SDK
+4. Also in Module Settings:
+	a) Project Settings:
+	- Modules:
+		+ android -> Dependencies -> Module SDK -> Select appropriate Android SDK
+		+ core -> Dependencies -> Module SDK -> Select appropriate SDK version
+		+ desktop -> Dependencies -> Module SDK -> Select appropriate SDK version
+		+ html -> Dependencies -> Module SDK -> Select appropriate SDK version
+		+ TowerDefenses -> Tab Paths -> Tick Inherit project compile output path
+5. On the main menu: Run -> Edit Configurations
+- Add New Configuration(+) -> Application:
++ Name: Desktop Run
++ Use classpath of module: desktop
++ Main class: DesktopLauncher
++ Working directory: android\assets
+
+- Add New Configuration(+) -> Android App:
++ Name: Android Run
++ Module: android
++ Target Device: USB device/Emulator
+
+- Add New Configuration(+) -> Gradle:
++ Name: HTML Run
++ Tasks: html:superDev

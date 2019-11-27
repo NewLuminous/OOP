@@ -37,7 +37,7 @@ public class MainScreen implements Screen {
         stage.getViewport().update(width, height, true);
         stage.mapImg.setHeight(Gdx.graphics.getHeight());
         stage.mapImg.setWidth(Gdx.graphics.getWidth());
-        stage.showUI();
+        stage.gameUI.show();
     }
 
     @Override

@@ -6,7 +6,6 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.physics.box2d.*;
 import com.badlogic.gdx.scenes.scene2d.Stage;
-import com.badlogic.gdx.scenes.scene2d.ui.Widget;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.game.controller.GameController;
 import com.game.entity.bullet.Bullet;
@@ -53,7 +52,7 @@ public class GameField extends Stage implements ContactListener {
         world = new World(new Vector2(0, 0), true);
         world.setContactListener(this);
 
-        renderer = new Box2DDebugRenderer(true,true,true,true,true,true);
+        renderer = new Box2DDebugRenderer(false,true,false,true,true,true);
         setupCamera();
 
         controller = new GameController();
@@ -117,48 +116,40 @@ public class GameField extends Stage implements ContactListener {
         return new Vector2(screenLocation.x + 0.5f, screenLocation.y + 0.5f);
     }
 
-    private boolean isWidgetClicked(Widget widget) {
-        if (widget.getX() > controller.mouseLocation.x) return false;
-        if (controller.mouseLocation.x > widget.getX() + widget.getWidth()) return false;
-        if (widget.getY() > Gdx.graphics.getHeight() - controller.mouseLocation.y) return false;
-        if (Gdx.graphics.getHeight() - controller.mouseLocation.y > widget.getY() + widget.getHeight()) return false;
-        return true;
-    }
-
     private void handleInputs() {
         if (controller.escape) stage.main.changeScreen(ScreenType.MENU);
         if (controller.space) stage.nextStage();
         if (controller.isMouse1Click()) {
-            if (isWidgetClicked(stage.menuButton)) stage.main.changeScreen(ScreenType.MENU);
+            if (stage.gameUI.isWidgetClicked(GameUI.WidgetType.MENU, controller.mouseLocation)) stage.main.changeScreen(ScreenType.MENU);
             if (newTower >= 0) {
                 Vector2 tile = convertScreenPosToWorldPos(controller.mouseLocation);
                 if (map[(int)tile.x][(int)tile.y] instanceof Mountain) {
                     setMap((int)tile.x, (int)tile.y, GameTile.TileType.values()[5 + newTower]);
                     stage.spendMoney(Tower.getBuildCost(Tower.TowerType.values()[newTower]));
                 }
-                stage.towers.get(newTower).setPosition(itemPos.x, itemPos.y);
+                stage.gameUI.towers.get(newTower).setPosition(itemPos.x, itemPos.y);
                 newTower = -1;
             }
             for (int i = 0; i < Tower.TowerType.values().length; ++i)
-                if (isWidgetClicked(stage.buttons.get(i + 1))) {
+                if (stage.gameUI.isTowerClicked(Tower.TowerType.values()[i], controller.mouseLocation)) {
                     if (stage.canAfford(Tower.getBuildCost(Tower.TowerType.values()[i]))) {
                         newTower = i;
-                        itemPos = new Vector2(stage.towers.get(i).getX(), stage.towers.get(i).getY());
+                        itemPos = new Vector2(stage.gameUI.towers.get(i).getX(), stage.gameUI.towers.get(i).getY());
                     }
                 }
-            if (isWidgetClicked(stage.startButton)) stage.nextStage();
-            if (isWidgetClicked(stage.autoplayLabel)) stage.switchAutoplayMode();
+            if (stage.gameUI.isWidgetClicked(GameUI.WidgetType.START, controller.mouseLocation)) stage.nextStage();
+            if (stage.gameUI.isWidgetClicked(GameUI.WidgetType.AUTOPLAY, controller.mouseLocation)) stage.switchAutoplayMode();
         }
         for (int i = 1; i <= 3; ++i)
             if (newTower < 0 && controller.num[i] && stage.canAfford(Tower.getBuildCost(Tower.TowerType.values()[i - 1]))) {
                 newTower = i - 1;
-                itemPos = new Vector2(stage.towers.get(i - 1).getX(), stage.towers.get(i - 1).getY());
+                itemPos = new Vector2(stage.gameUI.towers.get(i - 1).getX(), stage.gameUI.towers.get(i - 1).getY());
             }
         if (newTower >= 0) {
             Vector2 previewPos = convertScreenPosToWorldPos(controller.mouseLocation);
             previewPos.x = ((int)previewPos.x - 0.5f) * GameConfig.GRID_SIZE * GameConfig.getScreenScaleX();
             previewPos.y = ((int)previewPos.y - 0.5f) * GameConfig.GRID_SIZE * GameConfig.getScreenScaleY();
-            stage.towers.get(newTower).setPosition(previewPos.x, previewPos.y);
+            stage.gameUI.towers.get(newTower).setPosition(previewPos.x, previewPos.y);
         }
     }
 
@@ -223,7 +214,7 @@ public class GameField extends Stage implements ContactListener {
                 activeEntities.remove(enemy);
                 deadBodies.add(bullet.destroy());
                 deadBodies.add(enemy.destroy());
-                bountySum += 20;
+                bountySum += 5;
             }
         }
     }
