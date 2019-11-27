@@ -9,7 +9,7 @@ import com.game.util.loader.GameLoader;
 
 public class BossEnemy extends Enemy {
     BossEnemy(World world, int posx , int posy) {
-        super(BodyFactory.getInstance(world).getCircleBody(posx , posy, EnemyConfig.BOSSS_ENEMY_RADIUS,true, BodyDef.BodyType.DynamicBody),EnemyConfig.BOSS_ENEMY_HP);
+        super(BodyFactory.getInstance(world).getCircleBody(posx , posy, EnemyConfig.BOSS_ENEMY_RADIUS,true, BodyDef.BodyType.DynamicBody),EnemyConfig.BOSS_ENEMY_HP);
         setArmor(EnemyConfig.BOSS_ENEMY_ARMOR);
         setBounty(EnemyConfig.BOSS_ENEMY_BOUNTY);
         speed = EnemyConfig.BOSS_ENEMY_SPEED;
@@ -18,8 +18,9 @@ public class BossEnemy extends Enemy {
     @Override
     public Texture[] getTextures() {
         if (textures == null) {
-            textures = new Texture[1];
+            textures = new Texture[2];
             textures[0] = GameLoader.getManager().get(GameLoader.BOSS_ENEMY_BODY);
+            textures[1] = GameLoader.getManager().get(GameLoader.BOSS_ENEMY_HEAD);
         }
         return textures;
     }

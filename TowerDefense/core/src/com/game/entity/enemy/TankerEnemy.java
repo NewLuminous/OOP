@@ -5,6 +5,7 @@ import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.World;
 import com.game.entity.BodyFactory;
 import com.badlogic.gdx.math.Vector2;
+import com.game.entity.tile.GameTile;
 import com.game.util.loader.GameLoader;
 
 import java.nio.file.StandardWatchEventKinds;
@@ -21,8 +22,9 @@ public class TankerEnemy extends Enemy {
     @Override
     public Texture[] getTextures() {
         if (textures == null) {
-            textures = new Texture[1];
-            textures[0] = GameLoader.getManager().get(GameLoader.TANKER_ENEMY_HEAD);
+            textures = new Texture[2];
+            textures[0] = GameLoader.getManager().get(GameLoader.TANKER_ENEMY_BODY);
+            textures[1] = GameLoader.getManager().get(GameLoader.TANKER_ENEMY_HEAD);
         }
         return textures;
     }
