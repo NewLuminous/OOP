@@ -2,7 +2,7 @@ package com.game.entity.tile.tower;
 
 final class TowerConfig {
     static float NORMAL_TOWER_RANGE = 3.5f;
-    static double NORMAL_TOWER_DAMAGE;
+    static double NORMAL_TOWER_DAMAGE = 5;
     static double NORMAL_TOWER_RATE_OF_FIRE = 1;
     static int NORMAL_TOWER_COST = 100;
 

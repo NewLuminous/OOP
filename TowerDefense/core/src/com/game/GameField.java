@@ -220,10 +220,11 @@ public class GameField extends Stage implements ContactListener {
                 if (enemy != bullet.target) return;
                 bullets.remove(bullet);
                 activeEntities.remove(bullet);
+                
                 activeEntities.remove(enemy);
                 deadBodies.add(bullet.destroy());
                 deadBodies.add(enemy.destroy());
-                bountySum += 20;
+                bountySum += enemy.getBounty();
             }
         }
     }

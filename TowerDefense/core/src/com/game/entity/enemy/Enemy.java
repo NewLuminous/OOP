@@ -12,7 +12,6 @@ public abstract class Enemy extends GameEntity implements IMovingEntity {
     public enum EnemyType {
         NORMAL, TANKER, SMALLER, BOSS, RANDOM
     }
-
     private int hp;
     private int armor;
     private int bounty;
