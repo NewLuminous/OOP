@@ -8,6 +8,8 @@ import com.game.GameConfig;
 import com.game.entity.GameEntity;
 import com.game.entity.IMovingEntity;
 
+import javax.swing.plaf.basic.BasicInternalFrameTitlePane;
+
 public abstract class Enemy extends GameEntity implements IMovingEntity {
     public enum EnemyType {
         NORMAL, TANKER, SMALLER, BOSS, RANDOM
@@ -34,6 +36,10 @@ public abstract class Enemy extends GameEntity implements IMovingEntity {
     public void setHp(int hp) {
         if (hp <= 0) throw new IllegalArgumentException("HP must be a positive value");
         this.hp = hp;
+    }
+
+    public void decreaseHp(int damage) {
+        hp = hp - (Math.max(damage- armor,0 ));
     }
 
     public final int getArmor() {

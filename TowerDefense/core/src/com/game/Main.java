@@ -2,8 +2,8 @@
  * @brief	This is where the game starts
  * @author	Nguyen Minh Tan
  * @author	Vu Minh Ngoc
- * @version	0.7.0
- * @date	11/27/2019 (November 27th, 2019)
+ * @version	1.0.0
+ * @date	11/28/2019 (November 28th, 2019)
  */
 package com.game;
 

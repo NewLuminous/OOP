@@ -26,6 +26,10 @@ public class Bullet extends GameEntity implements IMovingEntity {
         this.target = target;
     }
 
+    public Tower getTower() {
+        return tower;
+    }
+
     @Override
     public void targetAt(Vector2 pos) {
         float deltaX = pos.x - getPosition().x;

@@ -24,7 +24,7 @@ public abstract class Tower extends GameTile implements IActiveEntity {
     private double rateOfFire;
     private double cooldown;
     private double range;
-    private double damage;
+    private int damage;
     private float direction;
     Texture[] textures;
 
@@ -62,11 +62,11 @@ public abstract class Tower extends GameTile implements IActiveEntity {
         this.range = range;
     }
 
-    public final double getDamage() {
+    public final int getDamage() {
         return damage;
     }
 
-    public void setDamage(double damage) {
+    public void setDamage(int damage) {
         if (damage < 0) throw new IllegalArgumentException("Damage does not accept the negative value");
         this.damage = damage;
     }
